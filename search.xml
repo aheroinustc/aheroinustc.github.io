@@ -79,6 +79,38 @@
       </tags>
   </entry>
   <entry>
+    <title>你好，世界。</title>
+    <url>/2019/12/23/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>生活</strong></p>
+<div class="note warning">
+            <p>生下来，活下去。</p>
+          </div>
+<img data-src="/2019/12/23/hello-world/life.jpg" class="">
+<p><strong>科技</strong></p>
+<div class="note primary">
+            <p>时间，空间。</p><p>物质，能量。</p><p>生命，信息。</p>
+          </div>
+<span id="more"></span>
+<img data-src="/2019/12/23/hello-world/sci.jpg" class="">
+<p><strong>艺术</strong></p>
+<div class="note success">
+            <p>男人，女人，爱。</p>
+          </div>
+<img data-src="/2019/12/23/hello-world/art.jpg" class="">
+<p><strong>思考</strong></p>
+<div class="note info">
+            <p>我思故我在。</p>
+          </div>
+<img data-src="/2019/12/23/hello-world/think.jpg" class="">
+]]></content>
+      <categories>
+        <category>哲学</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Next主题博客的基本搭建。</title>
     <url>/2020/05/30/hexo-next/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>下面展示的是<code>ubuntu</code>系统环境。</p>
@@ -205,7 +237,7 @@ $ git clone https://github.com/theme-next/hexo-theme-next themes/next</code></pr
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cd hexoblog</span></span><br><span class="line"><span class="comment"># npm install --save hexo-tag-aplayer  </span></span><br></pre></td></tr></table></figure>
 <h1 id="单曲演示">单曲演示</h1>
 
-        <div id="aplayer-kVcmlfPm" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-BJyASoGd" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content">[00:05.86]最远的你是我最近的爱
 [00:10.68]
 [00:16.45]车继铃
@@ -246,7 +278,7 @@ $ git clone https://github.com/theme-next/hexo-theme-next themes/next</code></pr
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-kVcmlfPm"),
+            element: document.getElementById("aplayer-BJyASoGd"),
             narrow: false,
             autoplay: false,
             showlrc: 2,
@@ -277,10 +309,10 @@ $ git clone https://github.com/theme-next/hexo-theme-next themes/next</code></pr
 <pre><code>&#123;% aplayer "Caffeine" "Jeff Williams" "caffeine.mp3" "picture.jpg" "lrc:caffeine.txt" %&#125;</code></pre>
 <h1 id="列表演示">列表演示</h1>
 
-        <div id="aplayer-anidfkbR" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-ZACaEySa" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":3,"mode":"random","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"成都","author":"赵雷","url":"/2020/01/01/hexo-tag-aplayer-demo/cd.mp3","pic":"/2020/01/01/hexo-tag-aplayer-demo/cd.jpg","lrc":"cd.lrc"},{"title":"匆匆那年","author":"王菲","url":"/2020/01/01/hexo-tag-aplayer-demo/ccnn.mp3","pic":"/2020/01/01/hexo-tag-aplayer-demo/ccnn.jpg","lrc":"ccnn.lrc"},{"title":"最远的你是我最近的爱","author":"车继铃","url":"/2020/01/01/hexo-tag-aplayer-demo/zydn.mp3","pic":"/2020/01/01/hexo-tag-aplayer-demo/zydn.jpg","lrc":"zydn.lrc"}]};
-				  options.element = document.getElementById("aplayer-anidfkbR");
+				  options.element = document.getElementById("aplayer-ZACaEySa");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -319,38 +351,6 @@ $ git clone https://github.com/theme-next/hexo-theme-next themes/next</code></pr
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>你好，世界。</title>
-    <url>/2019/12/23/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>生活</strong></p>
-<div class="note warning">
-            <p>生下来，活下去。</p>
-          </div>
-<img data-src="/2019/12/23/hello-world/life.jpg" class="">
-<p><strong>科技</strong></p>
-<div class="note primary">
-            <p>时间，空间。</p><p>物质，能量。</p><p>生命，信息。</p>
-          </div>
-<span id="more"></span>
-<img data-src="/2019/12/23/hello-world/sci.jpg" class="">
-<p><strong>艺术</strong></p>
-<div class="note success">
-            <p>男人，女人，爱。</p>
-          </div>
-<img data-src="/2019/12/23/hello-world/art.jpg" class="">
-<p><strong>思考</strong></p>
-<div class="note info">
-            <p>我思故我在。</p>
-          </div>
-<img data-src="/2019/12/23/hello-world/think.jpg" class="">
-]]></content>
-      <categories>
-        <category>哲学</category>
-      </categories>
-      <tags>
-        <tag>Life</tag>
       </tags>
   </entry>
   <entry>
@@ -547,6 +547,40 @@ l &amp;= m - n \label{eq4}
       </tags>
   </entry>
   <entry>
+    <title>Hexo Next主题开启valine评论系统。</title>
+    <url>/2020/05/31/valine/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><img data-src="/2020/05/31/valine/valine.png" class="">
+<h1 id="valine评论系统简介">valine评论系统简介</h1>
+<p><a href="https://valine.js.org/">Valine</a> - 一款快速、简洁且高效的无后端评论系统。</p>
+<p>Valine 诞生于2017年8月7日，是一款基于LeanCloud的快速、简洁且高效的无后端评论系统。</p>
+<p>Next主题新的版本，本身就已经集成了valine，直接使用即可。</p>
+<h1 id="开启valine">开启valine</h1>
+<ul>
+<li><p>注册Leancloud中国账号</p>
+<p><a href="https://www.leancloud.cn/">Leancloud中国官网</a></p></li>
+<li><p>创建应用并设置</p>
+<ul>
+<li>名称：例如，hexo-blog</li>
+<li>拷贝设置-应用keys 里面的AppID和AppKey备用</li>
+<li>设置-安全中心-服务开关，其余关闭，仅保留数据存储服务</li>
+<li>设置-安全中心-绑定Web安全域名为博客自定义域名</li>
+<li>数据存储-结构化数据-创建Class：Comment和Counter</li>
+</ul></li>
+<li><p>修改next主题配置文件 <span id="more"></span></p></li>
+</ul>
+<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Multiple Comment System Support</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="comment"># Available values: tabs | buttons</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">tabs</span></span><br><span class="line">  <span class="comment"># Choose a comment system to be displayed by default.</span></span><br><span class="line">  <span class="comment"># Available values: changyan | disqus | disqusjs | gitalk | livere | valine</span></span><br><span class="line">  <span class="attr">active:</span> <span class="string">valine</span></span><br><span class="line">  <span class="comment"># Setting `true` means remembering the comment system selected by the visitor.</span></span><br><span class="line">  <span class="attr">storage:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Lazyload all comment systems.</span></span><br><span class="line">  <span class="attr">lazyload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Modify texts or order for any navs, here are some examples.</span></span><br><span class="line">  <span class="attr">nav:</span></span><br><span class="line">    <span class="comment">#disqus:</span></span><br><span class="line">    <span class="comment">#  text: Load Disqus</span></span><br><span class="line">    <span class="comment">#  order: -1</span></span><br><span class="line">    <span class="comment">#gitalk:</span></span><br><span class="line">    <span class="comment">#  order: -2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">xxxxxxxxxx</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">xxxxxxxxxx</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">发表伟大的评论</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-cn</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">true</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">leancloud_visitors:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">app_id:</span> <span class="comment"># &lt;your app id&gt;</span></span><br><span class="line">  <span class="attr">app_key:</span> <span class="comment"># &lt;your app key&gt;</span></span><br><span class="line">  <span class="comment"># Required for apps from CN region</span></span><br><span class="line">  <span class="attr">server_url:</span> <span class="comment"># &lt;your server url&gt;</span></span><br><span class="line">  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span></span><br><span class="line">  <span class="comment"># If you don&#x27;t care about security in leancloud counter and just want to use it directly</span></span><br><span class="line">  <span class="comment"># (without hexo-leancloud-counter-security plugin), set `security` to `false`.</span></span><br><span class="line">  <span class="attr">security:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Valine</span></span><br><span class="line">  <span class="comment"># valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js</span></span><br><span class="line">  <span class="comment"># valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js</span></span><br><span class="line">  <span class="attr">valine:</span> <span class="string">//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="管理评论">管理评论</h1>
+<p>登录Leancloud账号，选择已经创建的应用，</p>
+<p>在数据存储-结构化数据-Comment类下管理评论即可。</p>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有谁共鸣。</title>
     <url>/2021/05/02/whoknows/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="note default">
@@ -580,40 +614,6 @@ l &amp;= m - n \label{eq4}
       </categories>
       <tags>
         <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Next主题开启valine评论系统。</title>
-    <url>/2020/05/31/valine/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><img data-src="/2020/05/31/valine/valine.png" class="">
-<h1 id="valine评论系统简介">valine评论系统简介</h1>
-<p><a href="https://valine.js.org/">Valine</a> - 一款快速、简洁且高效的无后端评论系统。</p>
-<p>Valine 诞生于2017年8月7日，是一款基于LeanCloud的快速、简洁且高效的无后端评论系统。</p>
-<p>Next主题新的版本，本身就已经集成了valine，直接使用即可。</p>
-<h1 id="开启valine">开启valine</h1>
-<ul>
-<li><p>注册Leancloud中国账号</p>
-<p><a href="https://www.leancloud.cn/">Leancloud中国官网</a></p></li>
-<li><p>创建应用并设置</p>
-<ul>
-<li>名称：例如，hexo-blog</li>
-<li>拷贝设置-应用keys 里面的AppID和AppKey备用</li>
-<li>设置-安全中心-服务开关，其余关闭，仅保留数据存储服务</li>
-<li>设置-安全中心-绑定Web安全域名为博客自定义域名</li>
-<li>数据存储-结构化数据-创建Class：Comment和Counter</li>
-</ul></li>
-<li><p>修改next主题配置文件 <span id="more"></span></p></li>
-</ul>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Multiple Comment System Support</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="comment"># Available values: tabs | buttons</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">tabs</span></span><br><span class="line">  <span class="comment"># Choose a comment system to be displayed by default.</span></span><br><span class="line">  <span class="comment"># Available values: changyan | disqus | disqusjs | gitalk | livere | valine</span></span><br><span class="line">  <span class="attr">active:</span> <span class="string">valine</span></span><br><span class="line">  <span class="comment"># Setting `true` means remembering the comment system selected by the visitor.</span></span><br><span class="line">  <span class="attr">storage:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Lazyload all comment systems.</span></span><br><span class="line">  <span class="attr">lazyload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Modify texts or order for any navs, here are some examples.</span></span><br><span class="line">  <span class="attr">nav:</span></span><br><span class="line">    <span class="comment">#disqus:</span></span><br><span class="line">    <span class="comment">#  text: Load Disqus</span></span><br><span class="line">    <span class="comment">#  order: -1</span></span><br><span class="line">    <span class="comment">#gitalk:</span></span><br><span class="line">    <span class="comment">#  order: -2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">xxxxxxxxxx</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">xxxxxxxxxx</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">发表伟大的评论</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-cn</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">true</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">leancloud_visitors:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">app_id:</span> <span class="comment"># &lt;your app id&gt;</span></span><br><span class="line">  <span class="attr">app_key:</span> <span class="comment"># &lt;your app key&gt;</span></span><br><span class="line">  <span class="comment"># Required for apps from CN region</span></span><br><span class="line">  <span class="attr">server_url:</span> <span class="comment"># &lt;your server url&gt;</span></span><br><span class="line">  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span></span><br><span class="line">  <span class="comment"># If you don&#x27;t care about security in leancloud counter and just want to use it directly</span></span><br><span class="line">  <span class="comment"># (without hexo-leancloud-counter-security plugin), set `security` to `false`.</span></span><br><span class="line">  <span class="attr">security:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Valine</span></span><br><span class="line">  <span class="comment"># valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js</span></span><br><span class="line">  <span class="comment"># valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js</span></span><br><span class="line">  <span class="attr">valine:</span> <span class="string">//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="管理评论">管理评论</h1>
-<p>登录Leancloud账号，选择已经创建的应用，</p>
-<p>在数据存储-结构化数据-Comment类下管理评论即可。</p>
-]]></content>
-      <categories>
-        <category>瞎折腾</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
