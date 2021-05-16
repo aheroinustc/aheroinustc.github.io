@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/fancybox@3/dist/css/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"aheroinustc.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="准备工作  新建虚拟机，选择其他linux版本64位，开启cpu虚拟化intel&#x2F;amd引擎。 编辑虚拟机设置，更改固件类型为uefi，启动安装。  开始安装  当引导加载程序菜单出现时，选择 Arch Linux install medium 并按 Enter 进入安装环境 安装映像使用 systemd-boot 在 UEFI 模式下引导 您将会以 root 身份登录进一个虚拟控制台，默认的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="archlinux vmware虚拟机完整安装指南。">
+<meta property="og:url" content="https://aheroinustc.github.io/2021/05/02/archlinux/index.html">
+<meta property="og:site_name" content="Lcd1024|上善若水">
+<meta property="og:description" content="准备工作  新建虚拟机，选择其他linux版本64位，开启cpu虚拟化intel&#x2F;amd引擎。 编辑虚拟机设置，更改固件类型为uefi，启动安装。  开始安装  当引导加载程序菜单出现时，选择 Arch Linux install medium 并按 Enter 进入安装环境 安装映像使用 systemd-boot 在 UEFI 模式下引导 您将会以 root 身份登录进一个虚拟控制台，默认的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aheroinustc.github.io/2021/05/02/archlinux/logo.png">
+<meta property="article:published_time" content="2021-05-02T08:10:49.000Z">
+<meta property="article:modified_time" content="2021-05-02T08:22:29.288Z">
+<meta property="article:author" content="Richard">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aheroinustc.github.io/2021/05/02/archlinux/logo.png">
+
+<link rel="canonical" href="https://aheroinustc.github.io/2021/05/02/archlinux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>archlinux vmware虚拟机完整安装指南。 | Lcd1024|上善若水</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Lcd1024|上善若水" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lcd1024|上善若水</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欲上九天揽明月，且放白鹿青崖间</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-image fa-fw"></i>相册</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/aheroinustc" class="github-corner" title="有空的话就来GitHub找我吧!" aria-label="有空的话就来GitHub找我吧!" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://aheroinustc.github.io/2021/05/02/archlinux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Richard">
+      <meta itemprop="description" content="秋水文章不染尘">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lcd1024|上善若水">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          archlinux vmware虚拟机完整安装指南。
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-02 16:10:49 / 修改时间：16:22:29" itemprop="dateCreated datePublished" datetime="2021-05-02T16:10:49+08:00">2021-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%81%E5%86%9C%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">码农日常</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/02/archlinux/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/02/archlinux/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>22 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img data-src="/2021/05/02/archlinux/logo.png" class="">
+<h1 id="准备工作">准备工作</h1>
+<ul>
+<li>新建虚拟机，选择其他linux版本64位，开启cpu虚拟化intel/amd引擎。</li>
+<li>编辑虚拟机设置，更改固件类型为uefi，启动安装。</li>
+</ul>
+<h1 id="开始安装">开始安装</h1>
+<ul>
+<li><p>当引导加载程序菜单出现时，选择 Arch Linux install medium 并按 Enter 进入安装环境</p></li>
+<li><p>安装映像使用 systemd-boot 在 UEFI 模式下引导</p></li>
+<li><p>您将会以 root 身份登录进一个虚拟控制台，默认的 Shell是Zsh</p>
+<pre><code>   echo $SHELL</code></pre></li>
+<li><p>控制台键盘布局默认为 us（美式键盘映射）</p></li>
+<li><p>要验证启动模式，请用下列命令列出 efivars 目录</p>
+<pre><code>  ls /sys/firmware/efi/efivars
+  如果命令没有错误地显示了目录，则系统以 UEFI 模式启动。</code></pre></li>
+<li><p>连接到因特网</p>
+<pre><code>  ping www.baidu.com
+  因为虚拟机是有线网卡连接，已经联网成功。
+  如果是无线网卡，则使用 iwctl 验证无线网络。</code></pre></li>
+<li><p>配置网络连接: 动态IP地址和DNS服务器分配（可以省略）</p>
+<pre><code>  systemctl start dhcpcd</code></pre></li>
+<li><p>更新系统时间</p>
+<pre><code>  timedatectl set-ntp true #同步时间
+  timedatectl status  #检查状态 yes</code></pre>
+<span id="more"></span></li>
+<li><p>设置安装映像软件源为ustc</p>
+<pre><code>  文件 /etc/pacman.d/mirrorlist 定义了软件包会从哪个镜像源下载
+  这个文件接下来还会被 pacstrap 拷贝到新系统里，所以请确保设置正确。
+  vim /etc/pacman.d/mirrorlist，将ustc源设置为首行。
+  如果是从ustc下载的镜像，已经默认首行是ustc源。
+
+  执行pacman -Syyu</code></pre></li>
+<li><p>建立硬盘分区</p>
+<pre><code>  磁盘若被系统识别到，就会被分配为一个块设备
+  fdisk -l  #查看磁盘 80g
+  或者lsblk命令
+  如 /dev/sda
+  结果中以 rom，loop 或者 airoot 结束的可以被忽略。
+
+  GUID Partition Table （GPT）是一种更灵活的分区方式
+  建议在使用 UEFI 的情况下选择 GPT
+
+  使用parted 修改分区表，执行mklabel,选择gpt类型。
+  parted /dev/sda
+  mklabel 
+  quit
+  从而为UEFI系统创建GPT分区表。
+
+  使用cfdisk进行分区：
+  cfdisk /dev/sda 
+
+  依次选择New、size、type
+  /dev/sda1  300M   type:EFI system    （EFI系统分区）
+
+  分区完成，使用上下箭头，切换到未分区的部分继续分区。
+
+  /dev/sda2  2g     type:Linux swap         (交换空间)
+  /dev/sda3  50g    type:Linux filesystem   (/目录)
+  /dev/sda4  剩余   type:Linux filesystem   (/home目录)
+
+  最终把光标移动到write上面，输入yes，写入分区表，Quit。
+
+  fdisk -l  #查看分区表</code></pre></li>
+<li><p>格式化分区</p>
+<pre><code>  当分区建立好了，每个新建立的分区都需要使用适当的 文件系统 进行格式化。
+
+  mkfs.vfat  /dev/sda1 (EFI分区，支持grub)
+  mkswap /dev/sda2（交换空间分区）
+  mkfs.ext4  /dev/sda3（根分区）
+  mkfs.ext4  /dev/sda4（home分区）</code></pre></li>
+<li><p>挂载分区</p>
+<pre><code>  swapon /dev/sda2        #启用交换分区
+  mount  /dev/sda3  /mnt  #将根磁盘卷 挂载 到 /mnt
+
+  mkdir /mnt/home 
+  mount  /dev/sda4  /mnt/home  #将/home卷 挂载 到 /mnt/home
+
+  mkdir /mnt/boot
+  mkdir /mnt/boot/EFI
+  mount  /dev/sda1  /mnt/boot/EFI
+
+  稍后 genfstab 将自动检测挂载的文件系统和交换空间</code></pre></li>
+<li><p>安装必须的软件包</p>
+<pre><code>  pacstrap /mnt base linux linux-firmware
+
+  pacstrap /mnt dhcpcd  iwd vim sudo </code></pre></li>
+<li><p>生成 fstab 文件</p>
+<pre><code>  fstab文件可用于定义磁盘分区，各种其他块设备或远程文件系统应如何装入文件系统
+  用以下命令生成 fstab 文件 (用 -U 或 -L 选项设置UUID 或卷标)：
+  genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+  在执行完以上命令后，后检查一下生成的 /mnt/etc/fstab 文件是否正确。
+  cat /mnt/etc/fstab</code></pre></li>
+<li><p>Change root 到新安装的系统</p>
+<pre><code>  arch-chroot /mnt</code></pre></li>
+<li><p>设置时区</p>
+<pre><code>  ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></pre></li>
+<li><p>运行hwclock，设置硬件时钟</p>
+<pre><code>  hwclock --systohc  # 运行 hwclock 以生成 /etc/adjtime</code></pre></li>
+<li><p>本地化</p>
+<pre><code>  本地化的程序与库若要本地化文本，都依赖Locale，后者明确规定地域、货币、时区日期的格式、字符排列方式和其他本地化标准。
+  需在这两个文件设置：locale.gen 与 locale.conf。
+
+  vim /etc/locale.gen
+  取消注释en_US.utf-8
+
+  不推荐在此设置任何中文 locale，会导致 tty 乱码。
+
+  接着执行 locale-gen 以生成 locale 信息：
+  locale-gen
+
+  然后创建 /etc/locale.conf 文件，并编辑设定 LANG 变量，比如：
+      LANG=en_US.UTF-8
+  执行命令：
+  echo &quot;LANG=en_US.UTF-8&quot; &gt; /etc/locale.conf
+  cat /etc/locale.conf #查看</code></pre></li>
+<li><p>创建 hostname 文件:</p>
+<pre><code>  echo &quot;archlinux-vm&quot; &gt;  /etc/hostname
+
+  添加对应的信息到 hosts:
+
+  vim /etc/hosts
+  127.0.0.1   localhost
+  ::1         localhost
+  127.0.1.1   archlinux-vm.localdomain    archlinux-vm</code></pre></li>
+<li><p>Root 密码</p>
+<pre><code>  设置 Root 密码：
+  passwd</code></pre></li>
+<li><p>安装微码：</p>
+<pre><code>  对于 AMD 处理器，安装 amd-ucode。
+  对于 Intel 处理器，安装 intel-ucode。
+  pacman -S intel-ucode  amd-ucode</code></pre></li>
+<li><p>安装引导程序</p>
+<pre><code>  pacman -S grub efibootmgr
+  grub-install --target=x86_64-efi --efi-directory=/boot/EFI  --bootloader-id=GRUB 
+  grub-mkconfig -o /boot/grub/grub.cfg</code></pre></li>
+<li><p>退出 chroot 环境</p>
+<pre><code> 输入 exit 或按 Ctrl+d 退出 chroot 环境
+ 可选用 
+ umount -R /mnt 手动卸载被挂载的分区
+ 最后，通过执行 reboot 重启系统，systemd 将自动卸载仍然挂载的任何分区。
+ 不要忘记移除安装介质，然后使用 root 帐户登录到新系统。
+
+ 登录之后发现联网失败：
+ systemctl enable dhcpcd
+ reboot
+ ip address # 查看地址
+
+ Arch Linux 已经弃用了net-tools转而使用iproute2
+ 已弃用的命令  替换命令
+ ifconfig        ip address, ip link
+ netstat         ss 
+ route           ip route
+
+ 安装neofetch
+ pacman -S neofetch
+
+ 安装ssh
+ pacman -S openssh
+ systemctl enable sshd
+ reboot
+
+ man命令：
+ pacman -S man-db man-pages
+
+ 至此基本系统安装完成。</code></pre></li>
+</ul>
+<h1 id="安装后的工作">安装后的工作</h1>
+<pre><code>    # pacman -Syyu</code></pre>
+<ul>
+<li><p>用户和用户组</p>
+<pre><code>  新安装的系统只有一个超级用户，即 root.
+  不要在服务器上给 root 开放SSH登录权限，默认远程ssh连接，root用户无法登录。
+
+  创建普通用户u户进行日常操作，并提权
+  # useradd -m  -g users -G wheel  -s /bin/bash  u
+  -m 自动创建家目录  
+  -g 指定用户所属的用户组(主组）
+  -G 指定用户所属的附加组 指定为wheel，方便提权
+
+  # passwd u  #修改密码</code></pre></li>
+<li><p>权限提升</p>
+<pre><code>  su 和 sudo 两个命令都允许您以其他用户的身份运行命令。
+  su 默认将开启一个 root 用户登录 shell。
+
+  sudo 会给单个命令临时的超级用户权限，更加方便。
+  需要安装软件包sudo和vi：
+  # pacman -S sudo vi   
+
+  sudo的配置文件是/etc/sudoers，必须保证sudoers文件格式正确，否则sudo将无法运行。
+  需要使用visudo命令来编辑sudo的配置文件，以保证格式正确。
+  visudo调用的默认编辑器是vi，可以指定编辑器为vim：
+
+  # EDITOR=vim visudo
+  查找wheel用户组，允许wheel用户组成员u使用sudo：
+  %wheel   ALL=(ALL) ALL  #去掉注释
+
+  下面可以使用u进行ssh远程登录。</code></pre></li>
+<li><p>Pacman</p>
+<pre><code>  因为本人在浙江，编辑/etc/pacman.d/mirrorlist，
+  Server = https://mirrors.zju.edu.cn/archlinux/$repo/os/$arch 
+  到行首软件源，第二行为ustc的源。
+
+  同步源并更新系统
+  sudo pacman -Syu
+
+  仅同步源
+  sudo pacman -Sy  
+  sudo pacman -Syy #强制刷新，尽管最新
+
+  pacman -Q              #列出已经安装的软件包
+  pacman -Qi foo         #列出包是否安装以及详细信息
+
+  常用pacman命令，配合sudo使用：
+  pacman -R   abc  没有洁癖     # 删除包或组，保留全部依赖关系
+  pacman -Rc  abc  慎用         # 删除abc包和当前所有依赖abc的包，可能会移除潜在的仍然需要使用的包
+  pacman -Rsn  abc 推荐使用     # -s 删除abc包及abc的所有依赖，这些依赖是其他软件不再需要，或者用户未明确安装它们，可以维持系统清洁
+                                # -n 删除包的配置文件
+
+  pacman -Ss package          #查询在线包
+  pacman -Sc                  #清理/var/cache/pacman/pkg未被安装软件包的缓存
+  pacman -Scc                 #完全清理缓存
+
+  pacman -U /path/to/package/package_name-version.pkg.tar.gz                 #不从源安装本地包，其扩展名为 pkg.tar.gz
+  pacman -U http://url/package_name-version.pkg.tar.gz                        #安装一个远程包（不从源里）
+
+  安装 bash-completion 包，并加载 /usr/share/bash-completion/bash_completion 文件中的配置，
+  可以提供更多针对常见命令的选项的 tab 补全：
+
+  sudo pacman -S bash-completion
+
+  安装htop、wget、curl：
+  sudo pacman -S --needed htop wget curl git  #--needed 不要再安装已经是最新的软件</code></pre></li>
+<li><p>软件仓库：</p>
+<pre><code>  编辑 vim /etc/pacman.conf
+
+  如果计划使用 32 位程序，建议启用 multilib 仓库：
+  [multilib]
+  Include = /etc/pacman.d/mirrorlist
+
+  启用archlinuxcn仓库：
+  末尾添加
+  [archlinuxcn]
+  SigLevel = Optional TrustedOnly
+  Server = https://repo.archlinuxcn.org/$arch
+
+  仓库主地址：https://repo.archlinuxcn.org/ ，仓库服务器位于欧洲。
+  更新软件源：
+  sudo pacman -Syyu
+  安装archlinuxcn-keyring 包以导入 GPG key
+  sudo pacman -S archlinuxcn-keyring
+
+  针对中国用户，为了archlinuxcn仓库下载速度：
+  安装archlinuxcn-mirrorlist-git 包可以获得一份镜像列表，以便在 pacman.conf 中直接引入:
+  sudo pacman -S archlinuxcn-mirrorlist-git
+  会生成 /etc/pacman.d/archlinuxcn-mirrorlist文件，
+  取消注释所需的服务地址，如选择浙大和科大，
+  引入中国源，修改/etc/pacman.conf如下：
+  [archlinuxcn]
+  SigLevel = Optional TrustedOnly
+  Include = /etc/pacman.d/archlinuxcn-mirrorlist</code></pre></li>
+<li><p>Arch用户软件源（AUR）</p>
+<pre><code>  不使用makepkg手动构建，安装AUR helpers，不使用图形化的AUR工具，如pamac。
+
+  从archlinuxcn/yay 安装yay 
+  sudo pacman -S yay
+  yay默认不生成配置文件
+  添加官方源，自动生成配置，不使用清华源
+  yay --aururl &quot;https://aur.archlinux.org&quot; --save
+  vim ~/.config/yay/config.json查看配置
+
+  man yay   查看语法
+  yay常见用法：
+  yay  -Q     #所有包安装列表
+  yay  -Syu   #更新repo、AUR和升级所有包
+  yay  -Sua   #只更新AUR并升级AUR包
+  yay  -S  package  #从repo、AUR安装指定的包
+  yay  -S  package --mflags &quot;--skipchecksums --skippgpcheck&quot;   # 从repo、AUR安装指定的包，skipping checksums and pgp checks.
+
+  yay package      #从repo、AUR搜索并提示安装包按yogurt mode
+  yay -Ss package  #从repo、AUR搜索包
+  yay -Scc          #清理repo缓存和AUR缓存~/.cache/yay
+
+  不启用snapd/flatpak。
+
+  至此，命令行界面的系统已经配置完成，备份一份。</code></pre></li>
+</ul>
+<h1 id="安装kde桌面环境">安装KDE桌面环境</h1>
+<pre><code>    ssh远程登录系统</code></pre>
+<ul>
+<li><p>KDE</p>
+<pre><code>  sudo pacman -S plasma-meta  sddm  konsole  dolphin    #安装kde，显示管理器以及常用KDE应用
+  sudo systemctl enable sddm  # 显示管理器开机启动
+  sudo reboot
+
+  以上会同时安装python3最新版本。</code></pre></li>
+<li><p>Vmware tools</p>
+<pre><code>  虚拟机增强工具：
+  sudo pacman -S  open-vm-tools  gtkmm3 xf86-input-vmmouse xf86-video-vmware mesa
+  sudo systemctl enable vmtoolsd
+
+  新建/etc/X11/Xwrapper.config
+  添加：needs_root_rights=yes
+
+  窗口分辨率自动适配：
+   sudo pacman -S gtkmm  gtk2
+
+  通过 mkinitcpio.conf 加载以下模块：
+  /etc/mkinitcpio.conf
+  MODULES=(vsock vmw_vsock_vmci_transport vmw_balloon vmw_vmci vmwgfx)
+
+  sudo mkinitcpio -p linux
+  重启机器。
+  开启加速3D图形。</code></pre></li>
+<li><p>中文字体和本地化系统</p>
+<pre><code>  安装字体：
+  sudo pacman -S  adobe-source-han-sans-cn-fonts  adobe-source-han-serif-cn-fonts    noto-fonts-emoji
+         wqy-zenhei  wqy-microhei  wqy-bitmapfont  ttf-arphic-ukai ttf-arphic-uming noto-fonts-cjk
+
+  系统字体将默认安装到/usr/share/fonts
+  在设置-字体管理里面管理用户字体。
+
+  重新生成locale：
+  sudo vim /etc/locale.gen
+  取消注释en_US.utf-8之外，
+  再取消注释zh_CN.UTF-8
+  sudo locale-gen
+
+  sudo pacman -S  nano
+  nano重新编辑/etc/locale.conf
+  修改：
+  LANG=zh_CN.UTF-8  
+  LANGUAGE=zh_CN:en_US                                                                                                 
+  LC_CTYPE=zh_CN.UTF-8                                                                                               
+  LC_NUMERIC=zh_CN.UTF-8                                                                                             
+  LC_TIME=zh_CN.UTF-8                                                                                                           
+  LC_COLLATE=zh_CN.UTF-8                                                                                             
+  LC_MONETARY=zh_CN.UTF-8                                                                                            
+  LC_MESSAGES=zh_CN.UTF-8                                                                                            
+  LC_PAPER=zh_CN.UTF-8                                                                                               
+  LC_NAME=zh_CN.UTF-8                                                                                                
+  LC_ADDRESS=zh_CN.UTF-8                                                                                             
+  LC_TELEPHONE=zh_CN.UTF-8                                                                                           
+  LC_MEASUREMENT=zh_CN.UTF-8                                                                                         
+  LC_IDENTIFICATION=zh_CN.UTF-8                                                                                      
+
+  创建默认经本地化的用户目录：
+  sudo pacman -S xdg-user-dirs
+  reboot
+
+  重新启动，系统显示中文，
+  可以在系统设置-区域设置-格式里面查看细节。
+  适当微调dolphin。
+  如果桌面文件夹仍然显示Desktop，可以直接删除，新建[桌面]文件夹，
+  同时修改dolphin资源管理器左侧位置链接即可。
+
+  同时检查系统设置-应用程序-地点是否一致。
+
+  本地配置文件~/.config/user-dirs.dirs会自动更新。</code></pre></li>
+<li><p>中文输入法 fcitx5</p>
+<pre><code>  Fcitx5 是继 Fcitx 后的新一代输入法框架。
+
+  安装fcitx5-im 包组、输入法引擎、图形配置工具、词库、主题：
+  sudo pacman -S fcitx5-im fcitx5-chinese-addons fcitx5-configtool  fcitx5-pinyin-moegirl  fcitx5-material-color
+
+  安装对应的输入法模块后您将获得更加舒适的体验：
+  sudo pacman -S fcitx5-qt fcitx5-gtk
+
+  打开区域设置，开启输入法，
+  设置拼音输入法：
+  启用云拼音，启用&quot;在程序中显示预编辑文本&quot;即可启用单行模式。
+  配置附加组件-经典用户界面-设置字体和主题。
+  配置全局选项-左右shift
+
+  在KDE桌面环境下自动启动：
+  开机和关机里面添加自动启动项目-工具-fcitx5。
+
+  同时设置环境变量文件：
+  vim ~/.pam_environment
+  添加如下内容：
+  INPUT_METHOD  DEFAULT=fcitx
+  GTK_IM_MODULE DEFAULT=fcitx
+  QT_IM_MODULE  DEFAULT=fcitx
+  XMODIFIERS    DEFAULT=\@im=fcitx</code></pre></li>
+<li><p>配置zsh：</p>
+<pre><code>  sudo pacman -S zsh
+
+  chsh -s /bin/zsh    #不要sudo，仅对当前用户更改默认shell
+  sudo reboot
+
+  echo $SHELL  #查看当前用户默认shell
+
+  sh -c &quot;$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+  omz update
+
+  安装字体：
+  打开系统设置-字体管理，安装系统字体fira code，更改终端字体。
+
+  omz主题：Powerlevel10k
+  $ cd .oh-my-zsh/custom/themes
+  $ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
+
+  编辑ZSH_THEME=&quot;powerlevel10k/powerlevel10k&quot;  in ~/.zshrc
+  重新打开终端，按照主题提示操作，并安装所需omz插件：
+  zsh-autosuggestions、zsh-syntax-highlighting，
+  cd .oh-my-zsh/custom/plugins/ 
+  git clone https://github.com/zsh-users/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+  启用插件：
+  git
+  archlinux
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  colored-man-pages
+  command-not-found</code></pre></li>
+<li><p>配置vim</p>
+<pre><code>  git clone --depth=1 https://github.com/amix/vimrc.git     ~/.vim_runtime
+  sh ~/.vim_runtime/install_awesome_vimrc.sh</code></pre></li>
+<li><p>浏览器</p>
+<pre><code>  安装火狐浏览器及中文语言包：
+  sudo pacman -S firefox firefox-i18n-zh-cn  
+  登录、安装附加组件。</code></pre></li>
+<li><p>播放器及常用软件</p>
+<pre><code>  网易云音乐：
+  sudo pacman -S netease-cloud-music-gtk
+
+  mpv：
+  sudo pacman -S mpv  #支持歌词显示、视频播放
+
+  tg:
+  sudo pacman -S telegram-desktop
+
+  discover:
+  报错，无后端，安装依赖解决。
+  sudo pacman -S discover packagekit-qt5
+  不安装flatpak依赖。
+
+  图片：
+  sudo pacman -S gwenview
+
+  文档：
+  sudo pacman -S okular kate
+
+  工具：
+  KRunner：全局搜索，ALT + Space调出。
+  yakuake： 下拉式终端
+
+  邮件：
+  sudo pacman -S thunderbird
+
+  wps:(可选)
+  $ yay wps   #搜索并交互提示安装包
+  ==&gt; 要安装的包 (示例: 1 2 3, 1-3 或 ^4)
+  ==&gt; 8 11 12 13 14 
+  [Repo:2]  gtk2-2.24.32-2  openssl-1.0-1.0.2.u-1
+  [Aur:5]  wps-office-fonts-1.0-2  wps-office-cn-11.1.0.9719-1 (wps-office-mime-cn wps-office-mui-zh-cn wps-office-cn)  ttf-wps-fonts-1.0-5</code></pre></li>
+<li><p>重新配置网络管理器</p>
+<pre><code>  sudo systemctl disable dhcpcd   
+
+  sudo pacman -S --needed networkmanager   plasma-nm
+
+  sudo systemctl enable NetworkManager
+
+  重启系统，会自动弹出联网通知，不需要关闭。</code></pre></li>
+<li><p>系统美化</p>
+<pre><code>  全局主题默认即可，可以定制图标、光标、桌面壁纸（Unsplash每日一图）、锁屏壁纸(必应每日一图)。
+  冗余主题可以用discover卸载，不折腾，以免产生bug。
+
+  系统安装完成，虽然plasma已经为sddm默认选择微风主题，
+  但是未同步，所以sddm界面仍然保持初始状态，不美观。
+  而且没有设置sddm锁屏、登录屏幕头像。
+
+  打开系统设置-开机关机-登录屏幕SDDM，
+  重新选择微风主题并应用，找到高级选项-设置同步，选择用户自动登录、注销后立即登录，会生成配置文件：
+  /etc/sddm.conf.d/kde_settings.conf
+
+  添加FacesDir=/var/lib/AccountsService/icons/一行
+
+  [Autologin]
+  Relogin=true    #注销后立即登录
+  Session=plasma
+  User=u       
+
+  [General]
+  HaltCommand=/usr/bin/systemctl poweroff
+  RebootCommand=/usr/bin/systemctl reboot
+
+  [Theme]
+  Current=breeze
+  FacesDir=/var/lib/AccountsService/icons/   #所有用户共享的头像目录FacesDir
+
+  [Users]
+  MaximumUid=60000
+  MinimumUid=1000
+
+  拷贝png格式的.face.icon文件到FacesDir所在目录，命名方式username.face.icon。
+  sudo chmod a+x username.face.icon
+  sudo chmod a+r username.face.icon
+
+  查看权限：
+  getfacl u.face.icon
+
+  开始菜单头像：
+  新建png格式的.face.icon文件到~目录即可。</code></pre></li>
+</ul>
+<h1 id="开发环境搭建">开发环境搭建</h1>
+<ul>
+<li><p>gcc环境：</p>
+<pre><code>  sudo pacman -S --needed  base-devel glibc gdb git   
+  $ cc --version
+  $ g++ --version</code></pre></li>
+<li><p>go环境：</p>
+<pre><code>  $ sudo pacman -S go #自动创建软连接
+  $ go env
+  $ go env -w GO111MODULE=on
+  $ which go </code></pre></li>
+<li><p>java环境：</p>
+<pre><code>  $ yay jdk8
+
+  选择5： aur/jdk8 8u271-1 (+88 3.04) 
+  Oracle Java 8 Development Kit LTS
+
+  [Repo:2]  java-runtime-common-3-3  java-environment-common-3-3
+  [Aur:1]  jdk8-8u271-1
+
+  提示jdk8下载需要登录，无法下载，访问
+  https://www.oracle.com/technetwork/java/javase/downloads/ 下载
+  jdk-8u271-linux-x64.tar.gz到&quot;~/下载&quot;文件夹
+
+  重新执行：
+  yay -S jdk8
+  即可安装成功，并设置为默认jdk。
+
+  $ java -version
+  java version &quot;1.8.0_271&quot;
+
+  jdk默认目录：/usr/lib/jvm/
+  在安装jdk的同时，附带安装了java-runtime-common和java-environment-common两个包
+  从而archlinux-java命令可用，用来管理jdk环境。
+
+  $ archlinux-java status   #列出jdk
+  Available Java environments:
+  java-8-jdk (default)
+
+  下载jdk-11.0.9_linux-x64_bin.tar.gz到~/下载目录
+  接着安装jdk11：
+  yay jdk11
+  9 aur/jdk11 11.0.9-1 (+3 0.07) 
+  Oracle Java 11 Development Kit LTS
+  选择9
+
+  $ archlinux-java status
+  Available Java environments:
+  java-11-jdk
+  java-8-jdk (default)
+
+  $ archlinux-java set &lt;JAVA_ENV_NAME&gt; # 改变默认jdk  
+
+  $ sudo archlinux-java set java-11-jdk # 设置jdk11</code></pre></li>
+<li><p>python环境</p>
+<pre><code>  使用pyenv管理python多版本。
+  安装准备：
+  $ sudo pacman -S --needed base-devel openssl zlib
+
+  $ sudo pacman -S tk # 作为系统软件安装，解决报错UserWarning: matplotlib is currently using a non-GUI backend
+
+  必须事先安装，否则下载编译不成功。
+
+  安装：
+  git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+  环境变量设置：~/.zshrc末尾添加
+  export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
+  export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot; 
+
+  Add pyenv init to your shell to enable shims and autocompletion：
+  $ echo -e &#39;if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then\n  eval &quot;$(pyenv init -)&quot;\nfi&#39; &gt;&gt; .zshrc
+
+  升级pyenv版本：
+  cd $(pyenv root)
+  git pull
+
+  安装python版本：
+  pyenv versions      # 展示被pyenv管理的所有版本
+  pyenv install -l    # 查看可以安装的版本
+  pyenv install 3.7.9 # 安装指定版本
+  pyenv rehash        # 安装新版本后rehash一下
+
+  pyenv uninstall x.xx.xxx # 卸载指定版本
+
+  pyenv global 3.7.9  #指定全局版本
+  pyenv global system #还原系统版本
+
+
+  pyenv which  # 查看python路径
+
+  不要更改system版本的python。
+
+  此时不需要再创建虚拟环境，直接使用pyenv安装的版本即可。
+
+  $ pip install -U pip
+  $ pip install matplot
+  $ pip install jupyterlab
+
+  如果报错：unknown color name &quot;BACKGROUND&quot;
+  解决：
+  $xrdb -load  /dev/null
+  $xrdb -query</code></pre></li>
+<li><p>vscode安装</p>
+<pre><code>  不要安装code-oss版本，更新慢。
+
+  选择archlinuxcn/visual-studio-code-bin
+
+  $ yay vscode 
+  选择3，进行安装。
+
+  pacman -Q code # 查看安装信息
+
+  安装扩展及配置vscode，见配置文件。</code></pre></li>
+<li><p>node.js</p>
+<pre><code>  Node.js® is a JavaScript runtime built on Chrome&#39;s V8 JavaScript engine.
+
+  nvm is a version manager for node.js.
+
+  NPM是随同NodeJS一起安装的包管理工具。
+
+  安装或者升级nvm, 执行如下脚本:
+
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash    #v0.37.2是目前nvm版本
+
+  安装完成，会默认在.bashrc文件添加：
+
+  export NVM_DIR=&quot;$HOME/.nvm&quot;
+  [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm
+  [ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;  # This loads nvm bash_completion
+
+  将以上内容同样添加至当前默认shell的配置文件.zshrc末尾。
+  重启终端。
+  $ nvm --version   #查看当前nvm版本
+
+  请注意： which nvm 命令will not work, since nvm is a sourced shell function, not an executable binary.
+
+  $ nvm ls-remote    #查看远程可供安装的版本
+
+  $ nvm install x.x.x # 安装指定版本
+
+  找到当前最新的lts版本 - v14.15.2   (Latest LTS: Fermium)
+  以及当前最新的版本  - v15.4.0
+
+  依次安装这两个特殊版本：
+  nvm install &#39;lts/*&#39;   #安装最新的lts版本
+  nvm install node      #安装最新版本
+
+  第一次安装的版本为nvm管理的默认版本，目前是lts。
+
+  $ nvm ls  #查看当前安装的版本列表和指向。
+
+  $ nvm use node  #临时切换当前版本为最新版本。
+  $ nvm which node  # 查看最新版本的路径。
+
+  $ nvm use &#39;lts/*&#39; # 临时切换回lts版本
+  $ nvm use default # 临时切换回默认版本
+
+  $ nvm current  #查看当前正在使用的版本
+
+  To get the latest LTS version of node and migrate your existing installed packages, use
+  $ nvm install &#39;lts/*&#39; --reinstall-packages-from=current
+
+  If you want to install a new version of Node.js and migrate npm packages from a previous version:
+  $ nvm install node --reinstall-packages-from=node
+
+  为当前node版本安装最新的npm
+  $ nvm install-latest-npm
+  $ npm -v   #查看npm版本
+
+  卸载指定版本：
+  $ nvm uninstall &lt;version&gt; </code></pre></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>你的支持，是我不断前行的动力！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Richard 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Richard 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Richard
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://aheroinustc.github.io/2021/05/02/archlinux/" title="archlinux vmware虚拟机完整安装指南。">https://aheroinustc.github.io/2021/05/02/archlinux/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed-zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.zhihu.com/">
+            <span class="icon">
+              <i class="fab fa-zhihu"></i>
+            </span>
+
+            <span class="label">知乎</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.skype.com/">
+            <span class="icon">
+              <i class="fab fa-skype"></i>
+            </span>
+
+            <span class="label">Skype</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.whatsapp.com/">
+            <span class="icon">
+              <i class="fab fa-whatsapp"></i>
+            </span>
+
+            <span class="label">WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://line.me/">
+            <span class="icon">
+              <i class="fab fa-line"></i>
+            </span>
+
+            <span class="label">Line</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.reddit.com/">
+            <span class="icon">
+              <i class="fab fa-reddit"></i>
+            </span>
+
+            <span class="label">Reddit</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/02/whoknows/" rel="prev" title="有谁共鸣。">
+      <i class="fa fa-chevron-left"></i> 有谁共鸣。
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/14/live-2d/" rel="next" title="Hexo添加Live2D看板娘教程。">
+      Hexo添加Live2D看板娘教程。 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">开始安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">安装后的工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85kde%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">安装KDE桌面环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">5.</span> <span class="nav-text">开发环境搭建</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Richard"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Richard</p>
+  <div class="site-description" itemprop="description">秋水文章不染尘</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="微博 → https:&#x2F;&#x2F;weibo.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>微博</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/" title="推特 → https:&#x2F;&#x2F;twitter.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>推特</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="脸书 → https:&#x2F;&#x2F;www.facebook.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>脸书</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://telegram.org/" title="Telegram → https:&#x2F;&#x2F;telegram.org&#x2F;" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed-zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/jerryc127/hexo-theme-butterfly" title="https:&#x2F;&#x2F;github.com&#x2F;jerryc127&#x2F;hexo-theme-butterfly" rel="noopener" target="_blank">hexo-theme-butterfly</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/blinkfox/hexo-theme-matery" title="https:&#x2F;&#x2F;github.com&#x2F;blinkfox&#x2F;hexo-theme-matery" rel="noopener" target="_blank">hexo-theme-matery</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.sukiu.net/" title="https:&#x2F;&#x2F;blog.sukiu.net&#x2F;" rel="noopener" target="_blank">AnYi's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xaoxuu.com/" title="https:&#x2F;&#x2F;xaoxuu.com&#x2F;" rel="noopener" target="_blank">xaoxuu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://lovelijunyi.gitee.io/" title="https:&#x2F;&#x2F;lovelijunyi.gitee.io&#x2F;" rel="noopener" target="_blank">小弋の生活馆</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备 12345678号-1 </a>
+      <img src="/images/beian.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=1234567890" rel="noopener" target="_blank">京公网安备 1234567890号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2013 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Richard</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">28k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">46 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="//cdn.jsdelivr.net/gh/sukkaw/busuanzi@2.3/bsz.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-users"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        总访客：<span id="busuanzi_value_site_uv"></span>人
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        总访问量：<span id="busuanzi_value_site_pv"></span>次
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/fancybox@3/dist/js/jquery.fancybox.pack.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'rHXzgzoEWegAmfC5UgWshODw-gzGzoHsz',
+      appKey     : 'HvvSO8cYjslnx3dmYMwiURCu',
+      placeholder: "发表伟大的评论",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'www.lcd1024.xyz'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

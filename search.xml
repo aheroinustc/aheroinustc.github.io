@@ -1,0 +1,1331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hexo Next主题增加canvas-nest动态背景。</title>
+    <url>/2020/05/31/canvas-nest/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Canvas-nest.js for NexT主题</strong></p>
+<p>切换到hexo blog根目录， 编辑文件：<code>source/_data/footer.swig</code> 添加如下内容：</p>
+<figure class="highlight js"><figcaption><span>footer.swig</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;script color=<span class="string">&quot;0,0,255&quot;</span> opacity=<span class="string">&quot;0.5&quot;</span> zIndex=<span class="string">&quot;-1&quot;</span> count=<span class="string">&quot;99&quot;</span> src=<span class="string">&quot;https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后编辑主题配置文件， 取消如下注释即可： <span id="more"></span></p>
+<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">   <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">   <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">   <span class="comment">#sidebar: source/_data/sidebar.swig</span></span><br><span class="line">   <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">   <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">   <span class="attr">footer:</span> <span class="string">source/_data/footer.swig</span></span><br><span class="line">   <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">   <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">   <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">   <span class="comment">#style: source/_data/styles.styl</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Next主题不蒜子统计的使用。</title>
+    <url>/2020/05/31/busuanzi/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><img data-src="/2020/05/31/busuanzi/busuanzi.png" class="">
+<p><a href="http://busuanzi.ibruce.info/">不蒜子官网</a></p>
+<h1 id="hexo-next主题开启不蒜子统计">hexo next主题开启不蒜子统计</h1>
+<p>在next主题配置文件下修改：</p>
+<figure class="highlight yml"><figcaption><span>next/config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_visitors:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_visitors_icon:</span> <span class="string">fa</span> <span class="string">fa-user</span>  <span class="comment">#为了美观，可以使用fa-users</span></span><br><span class="line">  <span class="attr">total_views:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_views_icon:</span> <span class="string">fa</span> <span class="string">fa-eye</span></span><br><span class="line">  <span class="attr">post_views:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">post_views_icon:</span> <span class="string">fa</span> <span class="string">fa-eye</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>通过<code>themes/next/layout/_third-party/statistics</code>下的<code>busuanzi-counter.swig</code>文件引入js：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;busuanzi-count&quot;</span>&gt;</span></span><br><span class="line">  &lt;script&#123;&#123; pjax &#125;&#125; async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="统计站点uv">统计站点uv</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;site-uv&quot;</span> <span class="attr">title</span>=<span class="string">&quot;&#123;&#123; __(&#x27;footer.total_visitors&#x27;) &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">        总访客：<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_uv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>人</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="统计站点pv">统计站点pv</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;site-pv&quot;</span> <span class="attr">title</span>=<span class="string">&quot;&#123;&#123; __(&#x27;footer.total_views&#x27;) &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">        总访问量：<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="统计页面pv">统计页面pv</h2>
+<p>在<code>themes/next/layout/_macro/post.swig</code>里面设置</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_page_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="不蒜子统计失效解决办法">不蒜子统计失效解决办法</h1>
+<ul>
+<li><p>检查js的源地址</p>
+<pre><code>  src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;
+
+  可以省略https:前缀。
+
+  注意不蒜子域名及地址的有效性。
+
+  一个可替代的JS Mirror的cdn地址：
+  src=&quot;//cdn.jsdelivr.net/gh/sukkaw/busuanzi@2.3/bsz.pure.mini.js&quot;</code></pre></li>
+<li><p>清除站点重新生成</p>
+<pre><code>  $ hexo cle &amp;&amp; hexo g -d</code></pre></li>
+</ul>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Next主题简单改变默认字体。</title>
+    <url>/2020/05/31/font/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hexo-next主题字体默认配置">Hexo Next主题字体默认配置</h1>
+<p>切换到next主题所在文件夹, 查看如下默认配置，已经可以满足基本要求。</p>
+<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="comment"># Use custom fonts families or not.</span></span><br><span class="line">  <span class="comment"># Depended options: `external` and `family`.</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Uri of fonts host, e.g. https://fonts.googleapis.com (Default).</span></span><br><span class="line">  <span class="attr">host:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font options:</span></span><br><span class="line">  <span class="comment"># `external: true` will load this font family from `host` above.</span></span><br><span class="line">  <span class="comment"># `family: Times New Roman`. Without any quotes.</span></span><br><span class="line">  <span class="comment"># `size: x.x`. Use `em` as unit. Default: 1 (16px)</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Global font settings used for all elements inside &lt;body&gt;.</span></span><br><span class="line">  <span class="attr">global:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Monda</span></span><br><span class="line">    <span class="attr">size:</span> <span class="number">1.125</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for site title (.site-title).</span></span><br><span class="line">  <span class="attr">title:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Lobster</span> <span class="string">Two</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for headlines (&lt;h1&gt; to &lt;h6&gt;).</span></span><br><span class="line">  <span class="attr">headings:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Amita</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for posts (.post-body).</span></span><br><span class="line">  <span class="attr">posts:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Roboto</span> <span class="string">Slab</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for &lt;code&gt; and code blocks.</span></span><br><span class="line">  <span class="attr">codes:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">PT</span> <span class="string">Mono</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="字体自定义配置">字体自定义配置</h1>
+<p>如果仍然需要自定义字体，则禁用默认字体。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="comment"># Use custom fonts families or not.</span></span><br><span class="line">  <span class="comment"># Depended options: `external` and `family`.</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>在hexo blog根目录下，编辑文件：<code>source/_data/variables.styl</code> 添加如下内容：</p>
+<figure class="highlight css"><figcaption><span>variables.styl</span></figcaption><table><tr><td class="code"><pre><span class="line">// Title <span class="attribute">Font</span>, set it <span class="selector-tag">to</span> <span class="attribute">font</span> family you want.</span><br><span class="line">$<span class="attribute">font-family</span>-headings = Georgia, sans</span><br><span class="line"></span><br><span class="line">// Set it <span class="selector-tag">to</span> <span class="attribute">font</span> family you want.</span><br><span class="line">$<span class="attribute">font-family</span>-base = &quot;Microsoft YaHei&quot;, Verdana, sans-serif</span><br><span class="line"></span><br><span class="line">// <span class="selector-tag">Code</span> <span class="attribute">Font</span>.</span><br><span class="line">$<span class="selector-tag">code</span>-<span class="attribute">font-family</span> = &quot;<span class="selector-tag">Input</span> Mono&quot;, &quot;PT Mono&quot;, Consolas, Monaco, Menlo, monospace</span><br><span class="line"></span><br><span class="line">// <span class="attribute">Font</span> size of articles.</span><br><span class="line">$<span class="attribute">font-size</span>-base = <span class="number">16px</span></span><br><span class="line"></span><br><span class="line">// <span class="attribute">Font</span> size of <span class="selector-tag">code</span>.</span><br><span class="line">$<span class="selector-tag">code</span>-<span class="attribute">font-size</span> = <span class="number">13px</span></span><br></pre></td></tr></table></figure>
+<p>然后编辑主题配置文件， 取消如下注释即可：</p>
+<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">   <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">   <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">   <span class="comment">#sidebar: source/_data/sidebar.swig</span></span><br><span class="line">   <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">   <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">   <span class="comment">#footer: source/_data/footer.swig</span></span><br><span class="line">   <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">   <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">   <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">   <span class="comment">#style: source/_data/styles.styl</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Next主题博客的基本搭建。</title>
+    <url>/2020/05/30/hexo-next/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>下面展示的是<code>ubuntu</code>系统环境。</p>
+<h1 id="准备工作">准备工作</h1>
+<ul>
+<li>安装 <code>git</code></li>
+<li>安装 <code>node.js</code>（使用<code>nvm</code>管理）</li>
+</ul>
+<p>此处，<code>node</code>版本信息</p>
+<pre><code> $ node -v
+ v12.18.3</code></pre>
+<h1 id="安装hexo">安装hexo</h1>
+<img data-src="/2020/05/30/hexo-next/hexo.jpg" class="">
+<p>在当前node版本下，全局安装hexo包：</p>
+<pre><code>$ npm install -g hexo-cli
+$ npm list -g   //查看全局包
+$ which hexo    //查看位置</code></pre>
+<h1 id="建站">建站</h1>
+<p>在主目录下建立<code>hexoblog</code>目录，初始化<code>hexo</code>框架目录：</p>
+<pre><code>$ mkdir ~/hexoblog
+$ cd hexoblog
+$ hexo init
+$ npm install  #读取package.json信息，自动安装依赖 </code></pre>
+<h1 id="目录结构">目录结构</h1>
+<pre><code>.
+├── _config.yml    //网站的配置信息
+├── package.json  //应用程序的信息
+├── scaffolds     //模版文件夹
+├── source        //资源文件夹，存放用户资源的地方
+|   ├── _drafts
+|   └── _posts
+└── themes    //主题文件夹</code></pre>
+<span id="more"></span>
+<h1 id="删除默认主题如果有">删除默认主题（如果有）</h1>
+<pre><code>$ rm -rf themes/landscape   </code></pre>
+<h1 id="下载自定义主题">下载自定义主题</h1>
+<p>默认<code>next</code>主题</p>
+<pre><code>$ cd ~/hexoblog
+$ git clone https://github.com/theme-next/hexo-theme-next themes/next</code></pre>
+<p>编辑<code>hexoblog</code>目录下<code>_config.yml</code>文件，</p>
+<pre><code>theme: next </code></pre>
+<p>执行：</p>
+<pre><code>$ hexo g </code></pre>
+<p>本地调试：</p>
+<pre><code>$ hexo s --debug</code></pre>
+<p>打开 http://localhost:4000 访问本地生成的博客 按Ctrl + C可以停止服务。</p>
+<h1 id="配置github账户">配置Github账户：</h1>
+<p>添加github上的SSH and GPG keys。 测试是否成功：</p>
+<pre><code>$ssh -T git@github.com</code></pre>
+<p>在GitHub上面新建空的repo:<code>aheroinustc.github.io</code></p>
+<p>修改<code>hexoblog</code>目录下的<code>_config.yml</code>文件，</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span>  </span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:aheroinustc/aheroinustc.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+<p>本地分支 <code>master</code> 设置为跟踪来自 <code>git@github.com:aheroinustc/aheroinustc.github.io</code> 的远程分支 <code>gh-pages</code>。</p>
+<p>特别注意<code>yml</code>文件的格式。</p>
+<p>切换到<code>hexoblog</code>目录，安装一个扩展<code>hexo-deployer-git</code></p>
+<pre><code>$ npm install hexo-deployer-git --save</code></pre>
+<p>这样就可以部署到github pages。</p>
+<p>github pages的帮助文档参见：</p>
+<pre><code>https://docs.github.com/cn/pages</code></pre>
+<p>使用<code>--save</code>选项会在<code>package.json</code>的<code>dependencies</code>属性下添加该项。</p>
+<p>推送到github，每次都是完全覆盖推送</p>
+<pre><code>$ hexo d</code></pre>
+<p>访问http://aheroinustc.github.io/ 查看</p>
+<p>每次清除、生成并部署：</p>
+<pre><code>$ hexo cle &amp;&amp; hexo g -d</code></pre>
+<h1 id="设置自定义域名">设置自定义域名</h1>
+<p>个人申请的域名是：</p>
+<pre><code>lcd1024.xyz</code></pre>
+<p>通过Cloudflare进行dns解析。</p>
+<p>添加四个<code>A</code>记录：</p>
+<pre><code>- A  @   185.199.108.153
+- A  @   185.199.109.153
+- A  @   185.199.110.153 
+- A  @   185.199.111.153 </code></pre>
+<p>添加1个<code>CNAME</code>记录：</p>
+<pre><code>- CNAME   www   aheroinustc.github.io</code></pre>
+<p>要确认您的DNS记录配置正确，请使用<code>dig</code>命令：</p>
+<pre><code>dig www.lcd1024.xyz +nostats +nocomments +nocmd</code></pre>
+<p>在本地<code>hexoblog/source</code>目录下新建<code>CNAME</code>文件， 内容为：</p>
+<pre><code>www.lcd1024.xyz</code></pre>
+<p>执行清除、生成并部署，</p>
+<pre><code>$hexo cle &amp;&amp; hexo g -d</code></pre>
+<h1 id="开启https访问">开启https访问</h1>
+<p>在github pages 设置页面启用Enforce HTTPS。</p>
+<p>github为自动为当前域名<code>www.lcd1024.xyz</code>申请<code>ssl</code>证书。</p>
+<p>至此，博客功能基本搭建完毕。</p>
+<p>剩下的就是丰富和完善博客布局了。</p>
+<p>所有插件安装要在<code>hexoblog</code>目录下进行本地安装</p>
+<p>这样确保安装在<code>hexoblog</code>下的<code>node_modules</code>目录</p>
+<p>使用 <code>--save</code>选项</p>
+<pre><code>$ npm install --save foo</code></pre>
+<h1 id="自定义next主题">自定义next主题</h1>
+<p>next主题的文档，请访问：</p>
+<pre><code>https://theme-next.js.org/</code></pre>
+<ul>
+<li><p>安装插件</p>
+<pre><code>  $ npm install hexo-generator-searchdb --save
+  $ npm install hexo-symbols-count-time --save
+  $ npm install hexo-generator-feed --save
+  $ npm install hexo-generator-sitemap --save</code></pre></li>
+<li><p>创建博客结构</p>
+<pre><code>  $ hexo new page about
+  $ hexo new page categories
+  $ hexo new page tags
+  $ hexo new page 404
+  $ hexo new page photos</code></pre></li>
+</ul>
+<p>其他配置参见博客其他文章。</p>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在文章中使用hexo-tag-aplayer插件播放音乐。</title>
+    <url>/2020/01/01/hexo-tag-aplayer-demo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="项目介绍">项目介绍</h1>
+<p>hexo-tag-aplayer是APlayer播放器的Hexo标签插件</p>
+<p>参见<a href="https://github.com/MoePlayer/hexo-tag-aplayer">hexo-tag-aplayer</a>。</p>
+<h1 id="安装插件">安装插件</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cd hexoblog</span></span><br><span class="line"><span class="comment"># npm install --save hexo-tag-aplayer  </span></span><br></pre></td></tr></table></figure>
+<h1 id="单曲演示">单曲演示</h1>
+
+        <div id="aplayer-kVcmlfPm" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content">[00:05.86]最远的你是我最近的爱
+[00:10.68]
+[00:16.45]车继铃
+[00:22.73]
+[00:27.46]夜已沉默 心事向谁说
+[00:33.72]不肯回头 所有的爱都错过
+[00:40.25]别笑我懦弱 我始终不能猜透
+[00:46.86]为何人生 淡薄
+[00:53.59]风雨之后 无所谓拥有
+[00:59.46]萍水相逢 你却给我那么多
+[01:06.24]你挡住寒冬 温暖只保留给我
+[01:12.85]风霜寂寞 凋落在你的怀中
+[01:21.75]人生风景在游走 每当孤独我回首
+[01:28.42]你的爱总在不远地方等着我
+[01:34.72]岁月如流在穿梭 喜怒哀乐我深锁
+[01:41.35]只因有你在天涯尽头等着我
+[01:50.11]
+[02:29.02]风雨之后 无所谓拥有
+[02:34.90]萍水相逢 你却给我那么多
+[02:42.20]你挡住寒冬 温暖只保留给我
+[02:47.88]风霜寂寞 凋落在你的怀中
+[02:56.65]人生风景在游走 每当孤独我回首
+[03:03.24]你的爱总在不远地方等着我
+[03:09.66]岁月如流在穿梭 喜怒哀乐我深锁
+[03:16.46]只因有你在天涯尽头等着我
+[03:22.32]
+[03:23.07]人生风景在游走 每当孤独我回首
+[03:29.52]你的爱总在不远地方等着我
+[03:36.10]岁月如流在穿梭 喜怒哀乐我深锁
+[03:42.94]只因有你在天涯尽头等着我
+[03:50.84]人生风景在游走 每当孤独我回首
+[03:56.06]你的爱总在不远地方等着我
+[04:01.95]岁月如流在穿梭
+[04:01:99]...
+
+
+</pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-kVcmlfPm"),
+            narrow: false,
+            autoplay: false,
+            showlrc: 2,
+            music: {
+              title: "最远的你是我最近的爱",
+              author: "车继铃",
+              url: "zydn.mp3",
+              pic: "/2020/01/01/hexo-tag-aplayer-demo/zydn.jpg",
+              lrc: "zydn.lrc"
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<span id="more"></span>
+<p>使用如下代码开启播放器：</p>
+<pre><code>&#123;% aplayer title author url [picture_url, narrow, autoplay, width:xxx, lrc:xxx] %&#125;
+
+- title : 曲目标题
+- author: 曲目作者
+- url: 音乐文件 URL 地址
+- picture_url: (可选) 音乐对应的图片地址
+- narrow: （可选）播放器袖珍风格
+- autoplay: (可选) 自动播放，移动端浏览器暂时不支持此功能
+- width:xxx: (可选) 播放器宽度 (默认: 100%)
+- lrc:xxx: （可选）歌词文件 URL 地址</code></pre>
+<p>如果开启了文章资源文件夹，可以将图片、音乐文件、歌词文件放入与文章对应的资源文件夹中，然后直接引用：</p>
+<pre><code>&#123;% aplayer "Caffeine" "Jeff Williams" "caffeine.mp3" "picture.jpg" "lrc:caffeine.txt" %&#125;</code></pre>
+<h1 id="列表演示">列表演示</h1>
+
+        <div id="aplayer-anidfkbR" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+			  <script>
+				  var options = {"narrow":false,"autoplay":false,"showlrc":3,"mode":"random","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"成都","author":"赵雷","url":"/2020/01/01/hexo-tag-aplayer-demo/cd.mp3","pic":"/2020/01/01/hexo-tag-aplayer-demo/cd.jpg","lrc":"cd.lrc"},{"title":"匆匆那年","author":"王菲","url":"/2020/01/01/hexo-tag-aplayer-demo/ccnn.mp3","pic":"/2020/01/01/hexo-tag-aplayer-demo/ccnn.jpg","lrc":"ccnn.lrc"},{"title":"最远的你是我最近的爱","author":"车继铃","url":"/2020/01/01/hexo-tag-aplayer-demo/zydn.mp3","pic":"/2020/01/01/hexo-tag-aplayer-demo/zydn.jpg","lrc":"zydn.lrc"}]};
+				  options.element = document.getElementById("aplayer-anidfkbR");
+				  var ap = new APlayer(options);
+			    window.aplayers || (window.aplayers = []);
+				  window.aplayers.push(ap);
+			  </script>
+<p>使用如下代码开启带有列表的播放器:</p>
+<pre><code>&#123;% aplayerlist %&#125;
+    &#123;
+        "narrow": false,                          // （可选）播放器袖珍风格
+        "autoplay": true,                         // （可选) 自动播放，移动端浏览器暂时不支持此功能
+        "mode": "random",                         // （可选）曲目循环类型，有 'random'（随机播放）, 'single' (单曲播放), 'circulation' (循环播放), 'order' (列表播放)， 默认：'circulation' 
+        "showlrc": 3,                             // （可选）歌词显示配置项，可选项有：1,2,3
+        "mutex": true,                            // （可选）该选项开启时，如果同页面有其他 aplayer 播放，该播放器会暂停
+        "theme": "#e6d0b2",	                      // （可选）播放器风格色彩设置，默认：#b7daff
+        "preload": "metadata",                    // （可选）音乐文件预载入模式，可选项： 'none' 'metadata' 'auto', 默认: 'auto'
+        "listmaxheight": "513px",                 // (可选) 该播放列表的最大长度
+        "music": [
+            &#123;
+                "title": "CoCo",
+                "author": "Jeff Williams",
+                "url": "caffeine.mp3",
+                "pic": "caffeine.jpeg",
+                "lrc": "caffeine.txt"
+            &#125;,
+            &#123;
+                "title": "アイロニ",
+                "author": "鹿乃",
+                "url": "irony.mp3",
+                "pic": "irony.jpg"
+            &#125;
+        ]
+    &#125;
+    &#123;% endaplayerlist %&#125;</code></pre>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>你好，世界。</title>
+    <url>/2019/12/23/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>生活</strong></p>
+<div class="note warning">
+            <p>生下来，活下去。</p>
+          </div>
+<img data-src="/2019/12/23/hello-world/life.jpg" class="">
+<p><strong>科技</strong></p>
+<div class="note primary">
+            <p>时间，空间。</p><p>物质，能量。</p><p>生命，信息。</p>
+          </div>
+<span id="more"></span>
+<img data-src="/2019/12/23/hello-world/sci.jpg" class="">
+<p><strong>艺术</strong></p>
+<div class="note success">
+            <p>男人，女人，爱。</p>
+          </div>
+<img data-src="/2019/12/23/hello-world/art.jpg" class="">
+<p><strong>思考</strong></p>
+<div class="note info">
+            <p>我思故我在。</p>
+          </div>
+<img data-src="/2019/12/23/hello-world/think.jpg" class="">
+]]></content>
+      <categories>
+        <category>哲学</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>且放白鹿青崖间。</title>
+    <url>/2019/12/24/libai/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><img data-src="/2019/12/24/libai/libai2.gif" class="">
+<div class="note default">
+            <p>海客谈瀛洲，烟涛微茫信难求。</p><p>越人语天姥，云霞明灭或可睹。</p><p>天姥连天向天横，势拔五岳掩赤城。</p><p>天台四万八千丈，对此欲倒东南倾。</p>
+          </div>
+<div class="note default">
+            <p>我欲因之梦吴越，一夜飞度镜湖月。</p><p>湖月照我影，送我至剡溪。</p><p>谢公宿处今尚在，渌水荡漾清猿啼。</p><p>脚著谢公屐，身登青云梯。</p><p>半壁见海日，空中闻天鸡。</p><p>千岩万转路不定，迷花倚石忽已暝。</p><p>熊咆龙吟殷岩泉，栗深林兮惊层巅。</p><p>云青青兮欲雨，水澹澹兮生烟。</p>
+          </div>
+<div class="note default">
+            <p>列缺霹雳，丘峦崩摧。洞天石扉，訇然中开。</p><p>青冥浩荡不见底，日月照耀金银台。</p><p>霓为衣兮风为马，云之君兮纷纷而来下。</p><p>虎鼓瑟兮鸾回车，仙之人兮列如麻。</p><p>忽魂悸以魄动，恍惊起而长嗟。</p><p>惟觉时之枕席，失向来之烟霞。</p>
+          </div>
+<div class="note default">
+            <p>世间行乐亦如此，古来万事东流水。</p><p>别君去兮何时还？</p><p>且放白鹿青崖间，须行即骑访名山。</p><p>安能摧眉折腰事权贵，使我不得开心颜!</p>
+          </div>
+<span id="more"></span>
+<img data-src="/2019/12/24/libai/libai.gif" class="">
+]]></content>
+      <categories>
+        <category>李白的诗</category>
+      </categories>
+      <tags>
+        <tag>Art</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欲上九天揽明月。</title>
+    <url>/2019/12/24/libai2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="note default">
+            <p>弃我去者，昨日之日不可留；</p><p>乱我心者，今日之日多烦忧。</p><p>长风万里送秋雁，对此可以酣高楼。</p><p>蓬莱文章建安骨，中间小谢又清发。</p><p>俱怀逸兴壮思飞，欲上青天览明月。</p><p>抽刀断水水更流，举杯消愁愁更愁。</p><p>人生在世不称意，明朝散发弄扁舟。</p><p>by 李白</p>
+          </div>
+<img data-src="/2019/12/24/libai2/libai2.jpg" class="">
+]]></content>
+      <categories>
+        <category>李白的诗</category>
+      </categories>
+      <tags>
+        <tag>Art</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo添加Live2D看板娘教程。</title>
+    <url>/2021/05/14/live-2d/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="看板娘">看板娘</h1>
+<p>看板娘是一种职业和习惯称呼，也是ACGN次文化中的萌属性之一。</p>
+<p>简而言之就是小店的女服务生，也有“吸引顾客、招揽生意、提高人气”等作用，类似品牌形象代言人。</p>
+<h1 id="添加live2d看板娘">添加Live2D看板娘</h1>
+<h2 id="安装依赖">安装依赖</h2>
+<pre><code>$npm install --save hexo-helper-live2d</code></pre>
+<h2 id="安装model文件">安装model文件</h2>
+<pre><code>这里选择shizuku
+
+npm install --save live2d-widget-model-shizuku</code></pre>
+<p>其他model参考：</p>
+<pre><code>https://github.com/xiazeyu/live2d-widget-models</code></pre>
+<h2 id="配置hexo的站点配置文件config.yml">配置Hexo的站点配置文件config.yml</h2>
+<figure class="highlight yml"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">### hexo-helper-live2d + live2d-widget-model-shizuku Live2D看板娘</span></span><br><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">pluginModelPath:</span> <span class="string">assets/</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="comment">#模板目录，在node_modules里</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget-model-shizuku</span>  </span><br><span class="line">  <span class="attr">display:</span></span><br><span class="line">    <span class="attr">position:</span> <span class="string">left</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">250</span> </span><br><span class="line">    <span class="attr">height:</span> <span class="number">500</span></span><br><span class="line">  <span class="attr">mobile:</span></span><br><span class="line">    <span class="comment"># 在手机端显示</span></span><br><span class="line">    <span class="attr">show:</span> <span class="literal">false</span>   </span><br><span class="line">  <span class="attr">rect:</span></span><br><span class="line">    <span class="string">opacity:0.7</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>如果暂时不需要，可以保留模块及配置，直接禁用即可。</p>
+<figure class="highlight yml"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>配置完成，重新发布即可。</p>
+<p><strong>效果如下：</strong> <img data-src="/2021/05/14/live-2d/shizuku.gif" class=""></p>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一些数学公式的演示。</title>
+    <url>/2019/12/24/math-demo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hexo-next主题使用math-equations">Hexo Next主题使用Math Equations</h1>
+<p>Next主题提供两种render engines来显示数学公式。</p>
+<ul>
+<li>MathJax: 速度慢，基于JavaScript，所有浏览器都可以工作，功能多。</li>
+<li>KaTeX： 速度快，不需要JavaScript，功能少。</li>
+</ul>
+<p>这里选择MathJax。</p>
+<img data-src="/2019/12/24/math-demo/mj-logo.svg" class="">
+<span id="more"></span>
+<h2 id="主题设置">主题设置</h2>
+<p>打开<code>next/_config.yml</code>设置如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="comment"># Default (true) will load mathjax / katex script on demand.</span></span><br><span class="line">  <span class="comment"># That is it only render those page which has `mathjax: true` in Front-matter.</span></span><br><span class="line">  <span class="comment"># If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.</span></span><br><span class="line">  <span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># See: https://mhchem.github.io/MathJax-mhchem/</span></span><br><span class="line">    <span class="attr">mhchem:</span> <span class="literal">false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>建议per_page参数设置为true,这样只在需要时进行显示,注意打开post的Front-matter。</p>
+<pre><code>---
+title: Will Render Math
+mathjax: true
+---</code></pre>
+<h2 id="安装renderers">安装renderers</h2>
+<p>卸载自带的render,hexo-renderer-marked <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#npm un hexo-renderer-marked</span></span><br></pre></td></tr></table></figure></p>
+<p>安装<code>hexo-renderer-pandoc</code>作为新的render：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#npm i hexo-renderer-pandoc --save</span></span><br></pre></td></tr></table></figure>
+<p>这种方案可以完美地处理markdown文档中的数学公式。</p>
+<p>不推荐使用下面的渲染器，容易产生语法问题：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#npm i hexo-renderer-kramed --save</span></span><br></pre></td></tr></table></figure>
+<p>注意，<code>hexo-renderer-pandoc</code>依赖<code>pandoc</code></p>
+<p>需要下载安装，这里以Ubuntu为例，下载deb包</p>
+<pre><code>https://github.com/jgm/pandoc/releases
+
+$ sudo  dpkg -i pandoc-2.13-1-amd64.deb
+$ pandoc --help   //确认安装成功</code></pre>
+<p>最后就可以找一些典型的数学公式来测试：</p>
+<h1 id="演示一些数学公式">演示一些数学公式：</h1>
+<h2 id="行内公式">行内公式 ($)</h2>
+<p>注意，开始的<code>$</code>和末尾的<code>$</code>不要与临近的内容之间存在空格。</p>
+<p><span class="math inline">\(i\hbar\frac{\partial}{\partial t}\psi=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi\)</span> ...... <span class="math inline">\(f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz\)</span></p>
+<h2 id="块公式">块公式($$)</h2>
+<ul>
+<li>微积分</li>
+</ul>
+<p><span class="math display">\[
+\vec{\nabla} \times \vec{F} =
+            \left( \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} \right) \mathbf{i}
+          + \left( \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \mathbf{j}
+          + \left( \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \mathbf{k}
+\]</span></p>
+<p><span class="math display">\[ \int_D ({\nabla\cdot} F)dV=\int_{\partial D} F\cdot ndS \]</span></p>
+<ul>
+<li>三角函数</li>
+</ul>
+<p><span class="math display">\[\cos(\theta+\phi)=\cos(\theta)\cos(\phi)−\sin(\theta)\sin(\phi)\]</span></p>
+<ul>
+<li>根式和分式</li>
+</ul>
+<p><span class="math display">\[x = {-b \pm \sqrt{b^2-4ac} \over 2a}\]</span></p>
+<p><span class="math display">\[\sqrt{1+\sqrt[^p\!]{1+a^2}}\]</span></p>
+<p><span class="math display">\[x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}\]</span></p>
+<ul>
+<li>矩阵和行列式</li>
+</ul>
+<p><span class="math display">\[\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\]</span></p>
+<p><span class="math display">\[\begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\]</span></p>
+<p><span class="math display">\[\begin{Bmatrix} a &amp; b\\ c &amp; d \end{Bmatrix}\]</span></p>
+<p><span class="math display">\[\begin{vmatrix} a &amp; b \\ c &amp; d \end{vmatrix}\]</span></p>
+<p><span class="math display">\[\begin{Vmatrix} a &amp; b \\ c &amp; d \end{Vmatrix}\]</span></p>
+<p><span class="math display">\[\begin{matrix} a &amp; b \\ c &amp; d \end{matrix}\]</span></p>
+<ul>
+<li>方程组</li>
+</ul>
+<p><span class="math display">\[ 
+\begin{equation}
+\begin{aligned}
+a &amp;= b + c \\
+  &amp;= d + e + f + g \\
+  &amp;= h + i
+\end{aligned}
+\end{equation}\label{eq1}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+a &amp;= b + c \label{eq2} \\
+x &amp;= yz \label{eq3} \\
+l &amp;= m - n \label{eq4}
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+-4 + 5x &amp;= 2+y \nonumber \\
+ w+2 &amp;= -1+w \\
+ ab &amp;= cb
+\end{align}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>怀旧。</title>
+    <url>/2020/05/28/missold/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="note default">
+            <p>这一年，到现在。</p><p>好累，好穷。</p><p>这个世界还会好吗？</p><p>突然好怀念，</p><p>那个年代。</p><p>再也回不去了，</p><p>天亮了，</p><p>该去睡觉了。</p>
+          </div>
+<span id="more"></span>
+<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1"><i class="fa fa-film" style="text-align: center;"></i></a></li><li class="tab"><a href="#tab-2"><i class="fa fa-video" style="text-align: center;"></i></a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><video width="960" height="540" src="/2020/05/28/missold/zydn.mp4" controls="controls">
+</video></div><div class="tab-pane" id="tab-2"><video width="960" height="540" src="/2020/05/28/missold/cy.mp4" controls="controls">
+</video></div></div></div>
+]]></content>
+      <categories>
+        <category>碎碎念</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Art</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有谁共鸣。</title>
+    <url>/2021/05/02/whoknows/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="note default">
+            <p>转眼之间，</p><p>5月已来。</p><p>昨夜暴风骤雨安睡，</p><p>今晚风平浪静失眠。</p><p>被蹂躏的世界,</p><p>是否还有明天。</p><p>孤独寂寞冷，</p><p>一曲肝肠断。</p><p>何以解忧，</p><p>多赚点钱。</p>
+          </div>
+<img data-src="/2021/05/02/whoknows/zgr.jpg" class="">
+<span id="more"></span>
+<video src="/2021/05/02/whoknows/ysgm.mp4" controls="controls">
+</video>
+]]></content>
+      <categories>
+        <category>碎碎念</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+        <tag>Art</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>无题。</title>
+    <url>/2020/06/04/wt/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="note default">
+            <p>这是一沟绝望的死水，</p><p>那里，断不是美的所在。</p><p>不如，交给丑恶来开垦，</p><p>某年某月的某一天，</p><p>看他，造出个什么世界。</p>
+          </div>
+<span id="more"></span>
+<video src="/2020/06/04/wt/slph.mp4" controls="controls">
+</video>
+]]></content>
+      <categories>
+        <category>碎碎念</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Next主题开启valine评论系统。</title>
+    <url>/2020/05/31/valine/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><img data-src="/2020/05/31/valine/valine.png" class="">
+<h1 id="valine评论系统简介">valine评论系统简介</h1>
+<p><a href="https://valine.js.org/">Valine</a> - 一款快速、简洁且高效的无后端评论系统。</p>
+<p>Valine 诞生于2017年8月7日，是一款基于LeanCloud的快速、简洁且高效的无后端评论系统。</p>
+<p>Next主题新的版本，本身就已经集成了valine，直接使用即可。</p>
+<h1 id="开启valine">开启valine</h1>
+<ul>
+<li><p>注册Leancloud中国账号</p>
+<p><a href="https://www.leancloud.cn/">Leancloud中国官网</a></p></li>
+<li><p>创建应用并设置</p>
+<ul>
+<li>名称：例如，hexo-blog</li>
+<li>拷贝设置-应用keys 里面的AppID和AppKey备用</li>
+<li>设置-安全中心-服务开关，其余关闭，仅保留数据存储服务</li>
+<li>设置-安全中心-绑定Web安全域名为博客自定义域名</li>
+<li>数据存储-结构化数据-创建Class：Comment和Counter</li>
+</ul></li>
+<li><p>修改next主题配置文件 <span id="more"></span></p></li>
+</ul>
+<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Multiple Comment System Support</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="comment"># Available values: tabs | buttons</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">tabs</span></span><br><span class="line">  <span class="comment"># Choose a comment system to be displayed by default.</span></span><br><span class="line">  <span class="comment"># Available values: changyan | disqus | disqusjs | gitalk | livere | valine</span></span><br><span class="line">  <span class="attr">active:</span> <span class="string">valine</span></span><br><span class="line">  <span class="comment"># Setting `true` means remembering the comment system selected by the visitor.</span></span><br><span class="line">  <span class="attr">storage:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Lazyload all comment systems.</span></span><br><span class="line">  <span class="attr">lazyload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Modify texts or order for any navs, here are some examples.</span></span><br><span class="line">  <span class="attr">nav:</span></span><br><span class="line">    <span class="comment">#disqus:</span></span><br><span class="line">    <span class="comment">#  text: Load Disqus</span></span><br><span class="line">    <span class="comment">#  order: -1</span></span><br><span class="line">    <span class="comment">#gitalk:</span></span><br><span class="line">    <span class="comment">#  order: -2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">xxxxxxxxxx</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">xxxxxxxxxx</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">发表伟大的评论</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-cn</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">true</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">leancloud_visitors:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">app_id:</span> <span class="comment"># &lt;your app id&gt;</span></span><br><span class="line">  <span class="attr">app_key:</span> <span class="comment"># &lt;your app key&gt;</span></span><br><span class="line">  <span class="comment"># Required for apps from CN region</span></span><br><span class="line">  <span class="attr">server_url:</span> <span class="comment"># &lt;your server url&gt;</span></span><br><span class="line">  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span></span><br><span class="line">  <span class="comment"># If you don&#x27;t care about security in leancloud counter and just want to use it directly</span></span><br><span class="line">  <span class="comment"># (without hexo-leancloud-counter-security plugin), set `security` to `false`.</span></span><br><span class="line">  <span class="attr">security:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Valine</span></span><br><span class="line">  <span class="comment"># valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js</span></span><br><span class="line">  <span class="comment"># valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js</span></span><br><span class="line">  <span class="attr">valine:</span> <span class="string">//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="管理评论">管理评论</h1>
+<p>登录Leancloud账号，选择已经创建的应用，</p>
+<p>在数据存储-结构化数据-Comment类下管理评论即可。</p>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Hexo Blog中开启文章资源文件夹。</title>
+    <url>/2019/12/27/post-asset-demo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>开启Post Asset Folder</strong></p>
+<p>编辑hexo blog根目录下的<code>_config.yml</code>，</p>
+<p>修改如下条目。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用<code>hexo new post (postname)</code>命令即可在新建post的同时生成文章资源文件夹。</p>
+<p>正确的引用图片方式为:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% asset_img example.jpg  %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p><strong>示例图片</strong></p>
+<img data-src="/2019/12/27/post-asset-demo/example.jpg" class="">
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Art</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>archlinux vmware虚拟机完整安装指南。</title>
+    <url>/2021/05/02/archlinux/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><img data-src="/2021/05/02/archlinux/logo.png" class="">
+<h1 id="准备工作">准备工作</h1>
+<ul>
+<li>新建虚拟机，选择其他linux版本64位，开启cpu虚拟化intel/amd引擎。</li>
+<li>编辑虚拟机设置，更改固件类型为uefi，启动安装。</li>
+</ul>
+<h1 id="开始安装">开始安装</h1>
+<ul>
+<li><p>当引导加载程序菜单出现时，选择 Arch Linux install medium 并按 Enter 进入安装环境</p></li>
+<li><p>安装映像使用 systemd-boot 在 UEFI 模式下引导</p></li>
+<li><p>您将会以 root 身份登录进一个虚拟控制台，默认的 Shell是Zsh</p>
+<pre><code>   echo $SHELL</code></pre></li>
+<li><p>控制台键盘布局默认为 us（美式键盘映射）</p></li>
+<li><p>要验证启动模式，请用下列命令列出 efivars 目录</p>
+<pre><code>  ls /sys/firmware/efi/efivars
+  如果命令没有错误地显示了目录，则系统以 UEFI 模式启动。</code></pre></li>
+<li><p>连接到因特网</p>
+<pre><code>  ping www.baidu.com
+  因为虚拟机是有线网卡连接，已经联网成功。
+  如果是无线网卡，则使用 iwctl 验证无线网络。</code></pre></li>
+<li><p>配置网络连接: 动态IP地址和DNS服务器分配（可以省略）</p>
+<pre><code>  systemctl start dhcpcd</code></pre></li>
+<li><p>更新系统时间</p>
+<pre><code>  timedatectl set-ntp true #同步时间
+  timedatectl status  #检查状态 yes</code></pre>
+<span id="more"></span></li>
+<li><p>设置安装映像软件源为ustc</p>
+<pre><code>  文件 /etc/pacman.d/mirrorlist 定义了软件包会从哪个镜像源下载
+  这个文件接下来还会被 pacstrap 拷贝到新系统里，所以请确保设置正确。
+  vim /etc/pacman.d/mirrorlist，将ustc源设置为首行。
+  如果是从ustc下载的镜像，已经默认首行是ustc源。
+
+  执行pacman -Syyu</code></pre></li>
+<li><p>建立硬盘分区</p>
+<pre><code>  磁盘若被系统识别到，就会被分配为一个块设备
+  fdisk -l  #查看磁盘 80g
+  或者lsblk命令
+  如 /dev/sda
+  结果中以 rom，loop 或者 airoot 结束的可以被忽略。
+
+  GUID Partition Table （GPT）是一种更灵活的分区方式
+  建议在使用 UEFI 的情况下选择 GPT
+
+  使用parted 修改分区表，执行mklabel,选择gpt类型。
+  parted /dev/sda
+  mklabel 
+  quit
+  从而为UEFI系统创建GPT分区表。
+
+  使用cfdisk进行分区：
+  cfdisk /dev/sda 
+
+  依次选择New、size、type
+  /dev/sda1  300M   type:EFI system    （EFI系统分区）
+
+  分区完成，使用上下箭头，切换到未分区的部分继续分区。
+
+  /dev/sda2  2g     type:Linux swap         (交换空间)
+  /dev/sda3  50g    type:Linux filesystem   (/目录)
+  /dev/sda4  剩余   type:Linux filesystem   (/home目录)
+
+  最终把光标移动到write上面，输入yes，写入分区表，Quit。
+
+  fdisk -l  #查看分区表</code></pre></li>
+<li><p>格式化分区</p>
+<pre><code>  当分区建立好了，每个新建立的分区都需要使用适当的 文件系统 进行格式化。
+
+  mkfs.vfat  /dev/sda1 (EFI分区，支持grub)
+  mkswap /dev/sda2（交换空间分区）
+  mkfs.ext4  /dev/sda3（根分区）
+  mkfs.ext4  /dev/sda4（home分区）</code></pre></li>
+<li><p>挂载分区</p>
+<pre><code>  swapon /dev/sda2        #启用交换分区
+  mount  /dev/sda3  /mnt  #将根磁盘卷 挂载 到 /mnt
+
+  mkdir /mnt/home 
+  mount  /dev/sda4  /mnt/home  #将/home卷 挂载 到 /mnt/home
+
+  mkdir /mnt/boot
+  mkdir /mnt/boot/EFI
+  mount  /dev/sda1  /mnt/boot/EFI
+
+  稍后 genfstab 将自动检测挂载的文件系统和交换空间</code></pre></li>
+<li><p>安装必须的软件包</p>
+<pre><code>  pacstrap /mnt base linux linux-firmware
+
+  pacstrap /mnt dhcpcd  iwd vim sudo </code></pre></li>
+<li><p>生成 fstab 文件</p>
+<pre><code>  fstab文件可用于定义磁盘分区，各种其他块设备或远程文件系统应如何装入文件系统
+  用以下命令生成 fstab 文件 (用 -U 或 -L 选项设置UUID 或卷标)：
+  genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+  在执行完以上命令后，后检查一下生成的 /mnt/etc/fstab 文件是否正确。
+  cat /mnt/etc/fstab</code></pre></li>
+<li><p>Change root 到新安装的系统</p>
+<pre><code>  arch-chroot /mnt</code></pre></li>
+<li><p>设置时区</p>
+<pre><code>  ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></pre></li>
+<li><p>运行hwclock，设置硬件时钟</p>
+<pre><code>  hwclock --systohc  # 运行 hwclock 以生成 /etc/adjtime</code></pre></li>
+<li><p>本地化</p>
+<pre><code>  本地化的程序与库若要本地化文本，都依赖Locale，后者明确规定地域、货币、时区日期的格式、字符排列方式和其他本地化标准。
+  需在这两个文件设置：locale.gen 与 locale.conf。
+
+  vim /etc/locale.gen
+  取消注释en_US.utf-8
+
+  不推荐在此设置任何中文 locale，会导致 tty 乱码。
+
+  接着执行 locale-gen 以生成 locale 信息：
+  locale-gen
+
+  然后创建 /etc/locale.conf 文件，并编辑设定 LANG 变量，比如：
+      LANG=en_US.UTF-8
+  执行命令：
+  echo &quot;LANG=en_US.UTF-8&quot; &gt; /etc/locale.conf
+  cat /etc/locale.conf #查看</code></pre></li>
+<li><p>创建 hostname 文件:</p>
+<pre><code>  echo &quot;archlinux-vm&quot; &gt;  /etc/hostname
+
+  添加对应的信息到 hosts:
+
+  vim /etc/hosts
+  127.0.0.1   localhost
+  ::1         localhost
+  127.0.1.1   archlinux-vm.localdomain    archlinux-vm</code></pre></li>
+<li><p>Root 密码</p>
+<pre><code>  设置 Root 密码：
+  passwd</code></pre></li>
+<li><p>安装微码：</p>
+<pre><code>  对于 AMD 处理器，安装 amd-ucode。
+  对于 Intel 处理器，安装 intel-ucode。
+  pacman -S intel-ucode  amd-ucode</code></pre></li>
+<li><p>安装引导程序</p>
+<pre><code>  pacman -S grub efibootmgr
+  grub-install --target=x86_64-efi --efi-directory=/boot/EFI  --bootloader-id=GRUB 
+  grub-mkconfig -o /boot/grub/grub.cfg</code></pre></li>
+<li><p>退出 chroot 环境</p>
+<pre><code> 输入 exit 或按 Ctrl+d 退出 chroot 环境
+ 可选用 
+ umount -R /mnt 手动卸载被挂载的分区
+ 最后，通过执行 reboot 重启系统，systemd 将自动卸载仍然挂载的任何分区。
+ 不要忘记移除安装介质，然后使用 root 帐户登录到新系统。
+
+ 登录之后发现联网失败：
+ systemctl enable dhcpcd
+ reboot
+ ip address # 查看地址
+
+ Arch Linux 已经弃用了net-tools转而使用iproute2
+ 已弃用的命令  替换命令
+ ifconfig        ip address, ip link
+ netstat         ss 
+ route           ip route
+
+ 安装neofetch
+ pacman -S neofetch
+
+ 安装ssh
+ pacman -S openssh
+ systemctl enable sshd
+ reboot
+
+ man命令：
+ pacman -S man-db man-pages
+
+ 至此基本系统安装完成。</code></pre></li>
+</ul>
+<h1 id="安装后的工作">安装后的工作</h1>
+<pre><code>    # pacman -Syyu</code></pre>
+<ul>
+<li><p>用户和用户组</p>
+<pre><code>  新安装的系统只有一个超级用户，即 root.
+  不要在服务器上给 root 开放SSH登录权限，默认远程ssh连接，root用户无法登录。
+
+  创建普通用户u户进行日常操作，并提权
+  # useradd -m  -g users -G wheel  -s /bin/bash  u
+  -m 自动创建家目录  
+  -g 指定用户所属的用户组(主组）
+  -G 指定用户所属的附加组 指定为wheel，方便提权
+
+  # passwd u  #修改密码</code></pre></li>
+<li><p>权限提升</p>
+<pre><code>  su 和 sudo 两个命令都允许您以其他用户的身份运行命令。
+  su 默认将开启一个 root 用户登录 shell。
+
+  sudo 会给单个命令临时的超级用户权限，更加方便。
+  需要安装软件包sudo和vi：
+  # pacman -S sudo vi   
+
+  sudo的配置文件是/etc/sudoers，必须保证sudoers文件格式正确，否则sudo将无法运行。
+  需要使用visudo命令来编辑sudo的配置文件，以保证格式正确。
+  visudo调用的默认编辑器是vi，可以指定编辑器为vim：
+
+  # EDITOR=vim visudo
+  查找wheel用户组，允许wheel用户组成员u使用sudo：
+  %wheel   ALL=(ALL) ALL  #去掉注释
+
+  下面可以使用u进行ssh远程登录。</code></pre></li>
+<li><p>Pacman</p>
+<pre><code>  因为本人在浙江，编辑/etc/pacman.d/mirrorlist，
+  Server = https://mirrors.zju.edu.cn/archlinux/$repo/os/$arch 
+  到行首软件源，第二行为ustc的源。
+
+  同步源并更新系统
+  sudo pacman -Syu
+
+  仅同步源
+  sudo pacman -Sy  
+  sudo pacman -Syy #强制刷新，尽管最新
+
+  pacman -Q              #列出已经安装的软件包
+  pacman -Qi foo         #列出包是否安装以及详细信息
+
+  常用pacman命令，配合sudo使用：
+  pacman -R   abc  没有洁癖     # 删除包或组，保留全部依赖关系
+  pacman -Rc  abc  慎用         # 删除abc包和当前所有依赖abc的包，可能会移除潜在的仍然需要使用的包
+  pacman -Rsn  abc 推荐使用     # -s 删除abc包及abc的所有依赖，这些依赖是其他软件不再需要，或者用户未明确安装它们，可以维持系统清洁
+                                # -n 删除包的配置文件
+
+  pacman -Ss package          #查询在线包
+  pacman -Sc                  #清理/var/cache/pacman/pkg未被安装软件包的缓存
+  pacman -Scc                 #完全清理缓存
+
+  pacman -U /path/to/package/package_name-version.pkg.tar.gz                 #不从源安装本地包，其扩展名为 pkg.tar.gz
+  pacman -U http://url/package_name-version.pkg.tar.gz                        #安装一个远程包（不从源里）
+
+  安装 bash-completion 包，并加载 /usr/share/bash-completion/bash_completion 文件中的配置，
+  可以提供更多针对常见命令的选项的 tab 补全：
+
+  sudo pacman -S bash-completion
+
+  安装htop、wget、curl：
+  sudo pacman -S --needed htop wget curl git  #--needed 不要再安装已经是最新的软件</code></pre></li>
+<li><p>软件仓库：</p>
+<pre><code>  编辑 vim /etc/pacman.conf
+
+  如果计划使用 32 位程序，建议启用 multilib 仓库：
+  [multilib]
+  Include = /etc/pacman.d/mirrorlist
+
+  启用archlinuxcn仓库：
+  末尾添加
+  [archlinuxcn]
+  SigLevel = Optional TrustedOnly
+  Server = https://repo.archlinuxcn.org/$arch
+
+  仓库主地址：https://repo.archlinuxcn.org/ ，仓库服务器位于欧洲。
+  更新软件源：
+  sudo pacman -Syyu
+  安装archlinuxcn-keyring 包以导入 GPG key
+  sudo pacman -S archlinuxcn-keyring
+
+  针对中国用户，为了archlinuxcn仓库下载速度：
+  安装archlinuxcn-mirrorlist-git 包可以获得一份镜像列表，以便在 pacman.conf 中直接引入:
+  sudo pacman -S archlinuxcn-mirrorlist-git
+  会生成 /etc/pacman.d/archlinuxcn-mirrorlist文件，
+  取消注释所需的服务地址，如选择浙大和科大，
+  引入中国源，修改/etc/pacman.conf如下：
+  [archlinuxcn]
+  SigLevel = Optional TrustedOnly
+  Include = /etc/pacman.d/archlinuxcn-mirrorlist</code></pre></li>
+<li><p>Arch用户软件源（AUR）</p>
+<pre><code>  不使用makepkg手动构建，安装AUR helpers，不使用图形化的AUR工具，如pamac。
+
+  从archlinuxcn/yay 安装yay 
+  sudo pacman -S yay
+  yay默认不生成配置文件
+  添加官方源，自动生成配置，不使用清华源
+  yay --aururl &quot;https://aur.archlinux.org&quot; --save
+  vim ~/.config/yay/config.json查看配置
+
+  man yay   查看语法
+  yay常见用法：
+  yay  -Q     #所有包安装列表
+  yay  -Syu   #更新repo、AUR和升级所有包
+  yay  -Sua   #只更新AUR并升级AUR包
+  yay  -S  package  #从repo、AUR安装指定的包
+  yay  -S  package --mflags &quot;--skipchecksums --skippgpcheck&quot;   # 从repo、AUR安装指定的包，skipping checksums and pgp checks.
+
+  yay package      #从repo、AUR搜索并提示安装包按yogurt mode
+  yay -Ss package  #从repo、AUR搜索包
+  yay -Scc          #清理repo缓存和AUR缓存~/.cache/yay
+
+  不启用snapd/flatpak。
+
+  至此，命令行界面的系统已经配置完成，备份一份。</code></pre></li>
+</ul>
+<h1 id="安装kde桌面环境">安装KDE桌面环境</h1>
+<pre><code>    ssh远程登录系统</code></pre>
+<ul>
+<li><p>KDE</p>
+<pre><code>  sudo pacman -S plasma-meta  sddm  konsole  dolphin    #安装kde，显示管理器以及常用KDE应用
+  sudo systemctl enable sddm  # 显示管理器开机启动
+  sudo reboot
+
+  以上会同时安装python3最新版本。</code></pre></li>
+<li><p>Vmware tools</p>
+<pre><code>  虚拟机增强工具：
+  sudo pacman -S  open-vm-tools  gtkmm3 xf86-input-vmmouse xf86-video-vmware mesa
+  sudo systemctl enable vmtoolsd
+
+  新建/etc/X11/Xwrapper.config
+  添加：needs_root_rights=yes
+
+  窗口分辨率自动适配：
+   sudo pacman -S gtkmm  gtk2
+
+  通过 mkinitcpio.conf 加载以下模块：
+  /etc/mkinitcpio.conf
+  MODULES=(vsock vmw_vsock_vmci_transport vmw_balloon vmw_vmci vmwgfx)
+
+  sudo mkinitcpio -p linux
+  重启机器。
+  开启加速3D图形。</code></pre></li>
+<li><p>中文字体和本地化系统</p>
+<pre><code>  安装字体：
+  sudo pacman -S  adobe-source-han-sans-cn-fonts  adobe-source-han-serif-cn-fonts    noto-fonts-emoji
+         wqy-zenhei  wqy-microhei  wqy-bitmapfont  ttf-arphic-ukai ttf-arphic-uming noto-fonts-cjk
+
+  系统字体将默认安装到/usr/share/fonts
+  在设置-字体管理里面管理用户字体。
+
+  重新生成locale：
+  sudo vim /etc/locale.gen
+  取消注释en_US.utf-8之外，
+  再取消注释zh_CN.UTF-8
+  sudo locale-gen
+
+  sudo pacman -S  nano
+  nano重新编辑/etc/locale.conf
+  修改：
+  LANG=zh_CN.UTF-8  
+  LANGUAGE=zh_CN:en_US                                                                                                 
+  LC_CTYPE=zh_CN.UTF-8                                                                                               
+  LC_NUMERIC=zh_CN.UTF-8                                                                                             
+  LC_TIME=zh_CN.UTF-8                                                                                                           
+  LC_COLLATE=zh_CN.UTF-8                                                                                             
+  LC_MONETARY=zh_CN.UTF-8                                                                                            
+  LC_MESSAGES=zh_CN.UTF-8                                                                                            
+  LC_PAPER=zh_CN.UTF-8                                                                                               
+  LC_NAME=zh_CN.UTF-8                                                                                                
+  LC_ADDRESS=zh_CN.UTF-8                                                                                             
+  LC_TELEPHONE=zh_CN.UTF-8                                                                                           
+  LC_MEASUREMENT=zh_CN.UTF-8                                                                                         
+  LC_IDENTIFICATION=zh_CN.UTF-8                                                                                      
+
+  创建默认经本地化的用户目录：
+  sudo pacman -S xdg-user-dirs
+  reboot
+
+  重新启动，系统显示中文，
+  可以在系统设置-区域设置-格式里面查看细节。
+  适当微调dolphin。
+  如果桌面文件夹仍然显示Desktop，可以直接删除，新建[桌面]文件夹，
+  同时修改dolphin资源管理器左侧位置链接即可。
+
+  同时检查系统设置-应用程序-地点是否一致。
+
+  本地配置文件~/.config/user-dirs.dirs会自动更新。</code></pre></li>
+<li><p>中文输入法 fcitx5</p>
+<pre><code>  Fcitx5 是继 Fcitx 后的新一代输入法框架。
+
+  安装fcitx5-im 包组、输入法引擎、图形配置工具、词库、主题：
+  sudo pacman -S fcitx5-im fcitx5-chinese-addons fcitx5-configtool  fcitx5-pinyin-moegirl  fcitx5-material-color
+
+  安装对应的输入法模块后您将获得更加舒适的体验：
+  sudo pacman -S fcitx5-qt fcitx5-gtk
+
+  打开区域设置，开启输入法，
+  设置拼音输入法：
+  启用云拼音，启用&quot;在程序中显示预编辑文本&quot;即可启用单行模式。
+  配置附加组件-经典用户界面-设置字体和主题。
+  配置全局选项-左右shift
+
+  在KDE桌面环境下自动启动：
+  开机和关机里面添加自动启动项目-工具-fcitx5。
+
+  同时设置环境变量文件：
+  vim ~/.pam_environment
+  添加如下内容：
+  INPUT_METHOD  DEFAULT=fcitx
+  GTK_IM_MODULE DEFAULT=fcitx
+  QT_IM_MODULE  DEFAULT=fcitx
+  XMODIFIERS    DEFAULT=\@im=fcitx</code></pre></li>
+<li><p>配置zsh：</p>
+<pre><code>  sudo pacman -S zsh
+
+  chsh -s /bin/zsh    #不要sudo，仅对当前用户更改默认shell
+  sudo reboot
+
+  echo $SHELL  #查看当前用户默认shell
+
+  sh -c &quot;$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+  omz update
+
+  安装字体：
+  打开系统设置-字体管理，安装系统字体fira code，更改终端字体。
+
+  omz主题：Powerlevel10k
+  $ cd .oh-my-zsh/custom/themes
+  $ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
+
+  编辑ZSH_THEME=&quot;powerlevel10k/powerlevel10k&quot;  in ~/.zshrc
+  重新打开终端，按照主题提示操作，并安装所需omz插件：
+  zsh-autosuggestions、zsh-syntax-highlighting，
+  cd .oh-my-zsh/custom/plugins/ 
+  git clone https://github.com/zsh-users/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+  启用插件：
+  git
+  archlinux
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  colored-man-pages
+  command-not-found</code></pre></li>
+<li><p>配置vim</p>
+<pre><code>  git clone --depth=1 https://github.com/amix/vimrc.git     ~/.vim_runtime
+  sh ~/.vim_runtime/install_awesome_vimrc.sh</code></pre></li>
+<li><p>浏览器</p>
+<pre><code>  安装火狐浏览器及中文语言包：
+  sudo pacman -S firefox firefox-i18n-zh-cn  
+  登录、安装附加组件。</code></pre></li>
+<li><p>播放器及常用软件</p>
+<pre><code>  网易云音乐：
+  sudo pacman -S netease-cloud-music-gtk
+
+  mpv：
+  sudo pacman -S mpv  #支持歌词显示、视频播放
+
+  tg:
+  sudo pacman -S telegram-desktop
+
+  discover:
+  报错，无后端，安装依赖解决。
+  sudo pacman -S discover packagekit-qt5
+  不安装flatpak依赖。
+
+  图片：
+  sudo pacman -S gwenview
+
+  文档：
+  sudo pacman -S okular kate
+
+  工具：
+  KRunner：全局搜索，ALT + Space调出。
+  yakuake： 下拉式终端
+
+  邮件：
+  sudo pacman -S thunderbird
+
+  wps:(可选)
+  $ yay wps   #搜索并交互提示安装包
+  ==&gt; 要安装的包 (示例: 1 2 3, 1-3 或 ^4)
+  ==&gt; 8 11 12 13 14 
+  [Repo:2]  gtk2-2.24.32-2  openssl-1.0-1.0.2.u-1
+  [Aur:5]  wps-office-fonts-1.0-2  wps-office-cn-11.1.0.9719-1 (wps-office-mime-cn wps-office-mui-zh-cn wps-office-cn)  ttf-wps-fonts-1.0-5</code></pre></li>
+<li><p>重新配置网络管理器</p>
+<pre><code>  sudo systemctl disable dhcpcd   
+
+  sudo pacman -S --needed networkmanager   plasma-nm
+
+  sudo systemctl enable NetworkManager
+
+  重启系统，会自动弹出联网通知，不需要关闭。</code></pre></li>
+<li><p>系统美化</p>
+<pre><code>  全局主题默认即可，可以定制图标、光标、桌面壁纸（Unsplash每日一图）、锁屏壁纸(必应每日一图)。
+  冗余主题可以用discover卸载，不折腾，以免产生bug。
+
+  系统安装完成，虽然plasma已经为sddm默认选择微风主题，
+  但是未同步，所以sddm界面仍然保持初始状态，不美观。
+  而且没有设置sddm锁屏、登录屏幕头像。
+
+  打开系统设置-开机关机-登录屏幕SDDM，
+  重新选择微风主题并应用，找到高级选项-设置同步，选择用户自动登录、注销后立即登录，会生成配置文件：
+  /etc/sddm.conf.d/kde_settings.conf
+
+  添加FacesDir=/var/lib/AccountsService/icons/一行
+
+  [Autologin]
+  Relogin=true    #注销后立即登录
+  Session=plasma
+  User=u       
+
+  [General]
+  HaltCommand=/usr/bin/systemctl poweroff
+  RebootCommand=/usr/bin/systemctl reboot
+
+  [Theme]
+  Current=breeze
+  FacesDir=/var/lib/AccountsService/icons/   #所有用户共享的头像目录FacesDir
+
+  [Users]
+  MaximumUid=60000
+  MinimumUid=1000
+
+  拷贝png格式的.face.icon文件到FacesDir所在目录，命名方式username.face.icon。
+  sudo chmod a+x username.face.icon
+  sudo chmod a+r username.face.icon
+
+  查看权限：
+  getfacl u.face.icon
+
+  开始菜单头像：
+  新建png格式的.face.icon文件到~目录即可。</code></pre></li>
+</ul>
+<h1 id="开发环境搭建">开发环境搭建</h1>
+<ul>
+<li><p>gcc环境：</p>
+<pre><code>  sudo pacman -S --needed  base-devel glibc gdb git   
+  $ cc --version
+  $ g++ --version</code></pre></li>
+<li><p>go环境：</p>
+<pre><code>  $ sudo pacman -S go #自动创建软连接
+  $ go env
+  $ go env -w GO111MODULE=on
+  $ which go </code></pre></li>
+<li><p>java环境：</p>
+<pre><code>  $ yay jdk8
+
+  选择5： aur/jdk8 8u271-1 (+88 3.04) 
+  Oracle Java 8 Development Kit LTS
+
+  [Repo:2]  java-runtime-common-3-3  java-environment-common-3-3
+  [Aur:1]  jdk8-8u271-1
+
+  提示jdk8下载需要登录，无法下载，访问
+  https://www.oracle.com/technetwork/java/javase/downloads/ 下载
+  jdk-8u271-linux-x64.tar.gz到&quot;~/下载&quot;文件夹
+
+  重新执行：
+  yay -S jdk8
+  即可安装成功，并设置为默认jdk。
+
+  $ java -version
+  java version &quot;1.8.0_271&quot;
+
+  jdk默认目录：/usr/lib/jvm/
+  在安装jdk的同时，附带安装了java-runtime-common和java-environment-common两个包
+  从而archlinux-java命令可用，用来管理jdk环境。
+
+  $ archlinux-java status   #列出jdk
+  Available Java environments:
+  java-8-jdk (default)
+
+  下载jdk-11.0.9_linux-x64_bin.tar.gz到~/下载目录
+  接着安装jdk11：
+  yay jdk11
+  9 aur/jdk11 11.0.9-1 (+3 0.07) 
+  Oracle Java 11 Development Kit LTS
+  选择9
+
+  $ archlinux-java status
+  Available Java environments:
+  java-11-jdk
+  java-8-jdk (default)
+
+  $ archlinux-java set &lt;JAVA_ENV_NAME&gt; # 改变默认jdk  
+
+  $ sudo archlinux-java set java-11-jdk # 设置jdk11</code></pre></li>
+<li><p>python环境</p>
+<pre><code>  使用pyenv管理python多版本。
+  安装准备：
+  $ sudo pacman -S --needed base-devel openssl zlib
+
+  $ sudo pacman -S tk # 作为系统软件安装，解决报错UserWarning: matplotlib is currently using a non-GUI backend
+
+  必须事先安装，否则下载编译不成功。
+
+  安装：
+  git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+  环境变量设置：~/.zshrc末尾添加
+  export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
+  export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot; 
+
+  Add pyenv init to your shell to enable shims and autocompletion：
+  $ echo -e &#39;if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then\n  eval &quot;$(pyenv init -)&quot;\nfi&#39; &gt;&gt; .zshrc
+
+  升级pyenv版本：
+  cd $(pyenv root)
+  git pull
+
+  安装python版本：
+  pyenv versions      # 展示被pyenv管理的所有版本
+  pyenv install -l    # 查看可以安装的版本
+  pyenv install 3.7.9 # 安装指定版本
+  pyenv rehash        # 安装新版本后rehash一下
+
+  pyenv uninstall x.xx.xxx # 卸载指定版本
+
+  pyenv global 3.7.9  #指定全局版本
+  pyenv global system #还原系统版本
+
+
+  pyenv which  # 查看python路径
+
+  不要更改system版本的python。
+
+  此时不需要再创建虚拟环境，直接使用pyenv安装的版本即可。
+
+  $ pip install -U pip
+  $ pip install matplot
+  $ pip install jupyterlab
+
+  如果报错：unknown color name &quot;BACKGROUND&quot;
+  解决：
+  $xrdb -load  /dev/null
+  $xrdb -query</code></pre></li>
+<li><p>vscode安装</p>
+<pre><code>  不要安装code-oss版本，更新慢。
+
+  选择archlinuxcn/visual-studio-code-bin
+
+  $ yay vscode 
+  选择3，进行安装。
+
+  pacman -Q code # 查看安装信息
+
+  安装扩展及配置vscode，见配置文件。</code></pre></li>
+<li><p>node.js</p>
+<pre><code>  Node.js® is a JavaScript runtime built on Chrome&#39;s V8 JavaScript engine.
+
+  nvm is a version manager for node.js.
+
+  NPM是随同NodeJS一起安装的包管理工具。
+
+  安装或者升级nvm, 执行如下脚本:
+
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash    #v0.37.2是目前nvm版本
+
+  安装完成，会默认在.bashrc文件添加：
+
+  export NVM_DIR=&quot;$HOME/.nvm&quot;
+  [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm
+  [ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;  # This loads nvm bash_completion
+
+  将以上内容同样添加至当前默认shell的配置文件.zshrc末尾。
+  重启终端。
+  $ nvm --version   #查看当前nvm版本
+
+  请注意： which nvm 命令will not work, since nvm is a sourced shell function, not an executable binary.
+
+  $ nvm ls-remote    #查看远程可供安装的版本
+
+  $ nvm install x.x.x # 安装指定版本
+
+  找到当前最新的lts版本 - v14.15.2   (Latest LTS: Fermium)
+  以及当前最新的版本  - v15.4.0
+
+  依次安装这两个特殊版本：
+  nvm install &#39;lts/*&#39;   #安装最新的lts版本
+  nvm install node      #安装最新版本
+
+  第一次安装的版本为nvm管理的默认版本，目前是lts。
+
+  $ nvm ls  #查看当前安装的版本列表和指向。
+
+  $ nvm use node  #临时切换当前版本为最新版本。
+  $ nvm which node  # 查看最新版本的路径。
+
+  $ nvm use &#39;lts/*&#39; # 临时切换回lts版本
+  $ nvm use default # 临时切换回默认版本
+
+  $ nvm current  #查看当前正在使用的版本
+
+  To get the latest LTS version of node and migrate your existing installed packages, use
+  $ nvm install &#39;lts/*&#39; --reinstall-packages-from=current
+
+  If you want to install a new version of Node.js and migrate npm packages from a previous version:
+  $ nvm install node --reinstall-packages-from=node
+
+  为当前node版本安装最新的npm
+  $ nvm install-latest-npm
+  $ npm -v   #查看npm版本
+
+  卸载指定版本：
+  $ nvm uninstall &lt;version&gt; </code></pre></li>
+</ul>
+]]></content>
+      <categories>
+        <category>码农日常</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+</search>
