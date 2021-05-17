@@ -63,28 +63,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Next主题简单改变默认字体。</title>
-    <url>/2020/05/31/font/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hexo-next主题字体默认配置">Hexo Next主题字体默认配置</h1>
-<p>切换到next主题所在文件夹, 查看如下默认配置，已经可以满足基本要求。</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="comment"># Use custom fonts families or not.</span></span><br><span class="line">  <span class="comment"># Depended options: `external` and `family`.</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Uri of fonts host, e.g. https://fonts.googleapis.com (Default).</span></span><br><span class="line">  <span class="attr">host:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font options:</span></span><br><span class="line">  <span class="comment"># `external: true` will load this font family from `host` above.</span></span><br><span class="line">  <span class="comment"># `family: Times New Roman`. Without any quotes.</span></span><br><span class="line">  <span class="comment"># `size: x.x`. Use `em` as unit. Default: 1 (16px)</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Global font settings used for all elements inside &lt;body&gt;.</span></span><br><span class="line">  <span class="attr">global:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Monda</span></span><br><span class="line">    <span class="attr">size:</span> <span class="number">1.125</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for site title (.site-title).</span></span><br><span class="line">  <span class="attr">title:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Lobster</span> <span class="string">Two</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for headlines (&lt;h1&gt; to &lt;h6&gt;).</span></span><br><span class="line">  <span class="attr">headings:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Amita</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for posts (.post-body).</span></span><br><span class="line">  <span class="attr">posts:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Roboto</span> <span class="string">Slab</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for &lt;code&gt; and code blocks.</span></span><br><span class="line">  <span class="attr">codes:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">PT</span> <span class="string">Mono</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h1 id="字体自定义配置">字体自定义配置</h1>
-<p>如果仍然需要自定义字体，则禁用默认字体。</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="comment"># Use custom fonts families or not.</span></span><br><span class="line">  <span class="comment"># Depended options: `external` and `family`.</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>在hexo blog根目录下，编辑文件：<code>source/_data/variables.styl</code> 添加如下内容：</p>
-<figure class="highlight css"><figcaption><span>variables.styl</span></figcaption><table><tr><td class="code"><pre><span class="line">// Title <span class="attribute">Font</span>, set it <span class="selector-tag">to</span> <span class="attribute">font</span> family you want.</span><br><span class="line">$<span class="attribute">font-family</span>-headings = Georgia, sans</span><br><span class="line"></span><br><span class="line">// Set it <span class="selector-tag">to</span> <span class="attribute">font</span> family you want.</span><br><span class="line">$<span class="attribute">font-family</span>-base = &quot;Microsoft YaHei&quot;, Verdana, sans-serif</span><br><span class="line"></span><br><span class="line">// <span class="selector-tag">Code</span> <span class="attribute">Font</span>.</span><br><span class="line">$<span class="selector-tag">code</span>-<span class="attribute">font-family</span> = &quot;<span class="selector-tag">Input</span> Mono&quot;, &quot;PT Mono&quot;, Consolas, Monaco, Menlo, monospace</span><br><span class="line"></span><br><span class="line">// <span class="attribute">Font</span> size of articles.</span><br><span class="line">$<span class="attribute">font-size</span>-base = <span class="number">16px</span></span><br><span class="line"></span><br><span class="line">// <span class="attribute">Font</span> size of <span class="selector-tag">code</span>.</span><br><span class="line">$<span class="selector-tag">code</span>-<span class="attribute">font-size</span> = <span class="number">13px</span></span><br></pre></td></tr></table></figure>
-<p>然后编辑主题配置文件， 取消如下注释即可：</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">   <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">   <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">   <span class="comment">#sidebar: source/_data/sidebar.swig</span></span><br><span class="line">   <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">   <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">   <span class="comment">#footer: source/_data/footer.swig</span></span><br><span class="line">   <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">   <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">   <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">   <span class="comment">#style: source/_data/styles.styl</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>瞎折腾</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>你好，世界。</title>
     <url>/2019/12/23/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>生活</strong></p>
@@ -114,6 +92,28 @@
       </categories>
       <tags>
         <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Next主题简单改变默认字体。</title>
+    <url>/2020/05/31/font/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hexo-next主题字体默认配置">Hexo Next主题字体默认配置</h1>
+<p>切换到next主题所在文件夹, 查看如下默认配置，已经可以满足基本要求。</p>
+<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="comment"># Use custom fonts families or not.</span></span><br><span class="line">  <span class="comment"># Depended options: `external` and `family`.</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Uri of fonts host, e.g. https://fonts.googleapis.com (Default).</span></span><br><span class="line">  <span class="attr">host:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font options:</span></span><br><span class="line">  <span class="comment"># `external: true` will load this font family from `host` above.</span></span><br><span class="line">  <span class="comment"># `family: Times New Roman`. Without any quotes.</span></span><br><span class="line">  <span class="comment"># `size: x.x`. Use `em` as unit. Default: 1 (16px)</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Global font settings used for all elements inside &lt;body&gt;.</span></span><br><span class="line">  <span class="attr">global:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Monda</span></span><br><span class="line">    <span class="attr">size:</span> <span class="number">1.125</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for site title (.site-title).</span></span><br><span class="line">  <span class="attr">title:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Lobster</span> <span class="string">Two</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for headlines (&lt;h1&gt; to &lt;h6&gt;).</span></span><br><span class="line">  <span class="attr">headings:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Amita</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for posts (.post-body).</span></span><br><span class="line">  <span class="attr">posts:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Roboto</span> <span class="string">Slab</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for &lt;code&gt; and code blocks.</span></span><br><span class="line">  <span class="attr">codes:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">PT</span> <span class="string">Mono</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="字体自定义配置">字体自定义配置</h1>
+<p>如果仍然需要自定义字体，则禁用默认字体。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="comment"># Use custom fonts families or not.</span></span><br><span class="line">  <span class="comment"># Depended options: `external` and `family`.</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>在hexo blog根目录下，编辑文件：<code>source/_data/variables.styl</code> 添加如下内容：</p>
+<figure class="highlight css"><figcaption><span>variables.styl</span></figcaption><table><tr><td class="code"><pre><span class="line">// Title <span class="attribute">Font</span>, set it <span class="selector-tag">to</span> <span class="attribute">font</span> family you want.</span><br><span class="line">$<span class="attribute">font-family</span>-headings = Georgia, sans</span><br><span class="line"></span><br><span class="line">// Set it <span class="selector-tag">to</span> <span class="attribute">font</span> family you want.</span><br><span class="line">$<span class="attribute">font-family</span>-base = &quot;Microsoft YaHei&quot;, Verdana, sans-serif</span><br><span class="line"></span><br><span class="line">// <span class="selector-tag">Code</span> <span class="attribute">Font</span>.</span><br><span class="line">$<span class="selector-tag">code</span>-<span class="attribute">font-family</span> = &quot;<span class="selector-tag">Input</span> Mono&quot;, &quot;PT Mono&quot;, Consolas, Monaco, Menlo, monospace</span><br><span class="line"></span><br><span class="line">// <span class="attribute">Font</span> size of articles.</span><br><span class="line">$<span class="attribute">font-size</span>-base = <span class="number">16px</span></span><br><span class="line"></span><br><span class="line">// <span class="attribute">Font</span> size of <span class="selector-tag">code</span>.</span><br><span class="line">$<span class="selector-tag">code</span>-<span class="attribute">font-size</span> = <span class="number">13px</span></span><br></pre></td></tr></table></figure>
+<p>然后编辑主题配置文件， 取消如下注释即可：</p>
+<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">   <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">   <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">   <span class="comment">#sidebar: source/_data/sidebar.swig</span></span><br><span class="line">   <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">   <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">   <span class="comment">#footer: source/_data/footer.swig</span></span><br><span class="line">   <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">   <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">   <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">   <span class="comment">#style: source/_data/styles.styl</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>瞎折腾</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -236,64 +236,7 @@ $ git clone https://github.com/theme-next/hexo-theme-next themes/next</code></pr
   <entry>
     <title>在文章中使用hexo-tag-aplayer插件播放音乐。</title>
     <url>/2020/01/01/hexo-tag-aplayer-demo/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-gBjJqvvh" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
-            <pre class="aplayer-lrc-content">[00:05.86]最远的你是我最近的爱
-[00:10.68]
-[00:16.45]车继铃
-[00:22.73]
-[00:27.46]夜已沉默 心事向谁说
-[00:33.72]不肯回头 所有的爱都错过
-[00:40.25]别笑我懦弱 我始终不能猜透
-[00:46.86]为何人生 淡薄
-[00:53.59]风雨之后 无所谓拥有
-[00:59.46]萍水相逢 你却给我那么多
-[01:06.24]你挡住寒冬 温暖只保留给我
-[01:12.85]风霜寂寞 凋落在你的怀中
-[01:21.75]人生风景在游走 每当孤独我回首
-[01:28.42]你的爱总在不远地方等着我
-[01:34.72]岁月如流在穿梭 喜怒哀乐我深锁
-[01:41.35]只因有你在天涯尽头等着我
-[01:50.11]
-[02:29.02]风雨之后 无所谓拥有
-[02:34.90]萍水相逢 你却给我那么多
-[02:42.20]你挡住寒冬 温暖只保留给我
-[02:47.88]风霜寂寞 凋落在你的怀中
-[02:56.65]人生风景在游走 每当孤独我回首
-[03:03.24]你的爱总在不远地方等着我
-[03:09.66]岁月如流在穿梭 喜怒哀乐我深锁
-[03:16.46]只因有你在天涯尽头等着我
-[03:22.32]
-[03:23.07]人生风景在游走 每当孤独我回首
-[03:29.52]你的爱总在不远地方等着我
-[03:36.10]岁月如流在穿梭 喜怒哀乐我深锁
-[03:42.94]只因有你在天涯尽头等着我
-[03:50.84]人生风景在游走 每当孤独我回首
-[03:56.06]你的爱总在不远地方等着我
-[04:01.95]岁月如流在穿梭
-[04:01:99]...
-
-
-</pre>
-        </div>
-        <script>
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-gBjJqvvh"),
-            narrow: false,
-            autoplay: true,
-            showlrc: 2,
-            music: {
-              title: "最远的你是我最近的爱",
-              author: "车继铃",
-              url: "zydn.mp3",
-              pic: "/2020/01/01/hexo-tag-aplayer-demo/zydn.jpg",
-              lrc: "zydn.lrc"
-            }
-          });
-          window.aplayers || (window.aplayers = []);
-          window.aplayers.push(ap);
-        </script>
-<h1 id="项目介绍">项目介绍</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="项目介绍">项目介绍</h1>
 <img data-src="/2020/01/01/hexo-tag-aplayer-demo/aplayer.jpg" class="">
 <p><code>hexo-tag-aplayer</code>是APlayer播放器的Hexo标签插件</p>
 <p>参见<a href="https://github.com/MoePlayer/hexo-tag-aplayer">hexo-tag-aplayer</a>。</p>
