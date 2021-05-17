@@ -145,6 +145,11 @@
     <a href="/photos/" rel="section"><i class="fa fa-image fa-fw"></i>相册</a>
 
   </li>
+        <li class="menu-item menu-item-musics">
+
+    <a href="/musics/" rel="section"><i class="fa fa-music fa-fw"></i>音乐</a>
+
+  </li>
         <li class="menu-item menu-item-sitemap">
 
     <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
@@ -209,128 +214,6 @@
 
           <div class="content index posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://aheroinustc.github.io/2021/05/14/live-2d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Richard">
-      <meta itemprop="description" content="秋水文章不染尘">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lcd1024|上善若水">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/14/live-2d/" class="post-title-link" itemprop="url">Hexo添加Live2D看板娘教程。</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-14 00:20:19" itemprop="dateCreated datePublished" datetime="2021-05-14T00:20:19+08:00">2021-05-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-16 05:04:17" itemprop="dateModified" datetime="2021-05-16T05:04:17+08:00">2021-05-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%9E%8E%E6%8A%98%E8%85%BE/" itemprop="url" rel="index"><span itemprop="name">瞎折腾</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/14/live-2d/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/14/live-2d/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>629</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="看板娘">看板娘</h1>
-<p>看板娘是一种职业和习惯称呼，也是ACGN次文化中的萌属性之一。</p>
-<p>简而言之就是小店的女服务生，也有“吸引顾客、招揽生意、提高人气”等作用，类似品牌形象代言人。</p>
-<h1 id="添加live2d看板娘">添加Live2D看板娘</h1>
-<h2 id="安装依赖">安装依赖</h2>
-<pre><code>$npm install --save hexo-helper-live2d</code></pre>
-<h2 id="安装model文件">安装model文件</h2>
-<pre><code>这里选择shizuku
-
-npm install --save live2d-widget-model-shizuku</code></pre>
-<p>其他model参考：</p>
-<pre><code>https://github.com/xiazeyu/live2d-widget-models</code></pre>
-<h2 id="配置hexo的站点配置文件config.yml">配置Hexo的站点配置文件config.yml</h2>
-<figure class="highlight yml"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">### hexo-helper-live2d + live2d-widget-model-shizuku Live2D看板娘</span></span><br><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">pluginModelPath:</span> <span class="string">assets/</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="comment">#模板目录，在node_modules里</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget-model-shizuku</span>  </span><br><span class="line">  <span class="attr">display:</span></span><br><span class="line">    <span class="attr">position:</span> <span class="string">left</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">250</span> </span><br><span class="line">    <span class="attr">height:</span> <span class="number">500</span></span><br><span class="line">  <span class="attr">mobile:</span></span><br><span class="line">    <span class="comment"># 在手机端显示</span></span><br><span class="line">    <span class="attr">show:</span> <span class="literal">false</span>   </span><br><span class="line">  <span class="attr">rect:</span></span><br><span class="line">    <span class="string">opacity:0.7</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/14/live-2d/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
       
   
   
@@ -842,7 +725,7 @@ npm install --save live2d-widget-model-shizuku</code></pre>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-16 14:52:03" itemprop="dateModified" datetime="2021-05-16T14:52:03+08:00">2021-05-16</time>
+                <time title="修改时间：2021-05-17 22:26:44" itemprop="dateModified" datetime="2021-05-17T22:26:44+08:00">2021-05-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -874,7 +757,7 @@ npm install --save live2d-widget-model-shizuku</code></pre>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1130,6 +1013,128 @@ npm install --save live2d-widget-model-shizuku</code></pre>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/05/31/font/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://aheroinustc.github.io/2020/05/31/live-2d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Richard">
+      <meta itemprop="description" content="秋水文章不染尘">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lcd1024|上善若水">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/31/live-2d/" class="post-title-link" itemprop="url">Hexo添加Live2D看板娘教程。</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-31 00:20:19" itemprop="dateCreated datePublished" datetime="2020-05-31T00:20:19+08:00">2020-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-17 22:25:07" itemprop="dateModified" datetime="2021-05-17T22:25:07+08:00">2021-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9E%8E%E6%8A%98%E8%85%BE/" itemprop="url" rel="index"><span itemprop="name">瞎折腾</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/05/31/live-2d/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/31/live-2d/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>567</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="看板娘">看板娘</h1>
+<p>看板娘是一种职业和习惯称呼，也是ACGN次文化中的萌属性之一。</p>
+<p>简而言之就是小店的女服务生，也有“吸引顾客、招揽生意、提高人气”等作用，类似品牌形象代言人。</p>
+<h1 id="添加live2d看板娘">添加Live2D看板娘</h1>
+<h2 id="安装依赖">安装依赖</h2>
+<pre><code>$npm install --save hexo-helper-live2d</code></pre>
+<h2 id="安装model文件">安装model文件</h2>
+<pre><code>这里选择shizuku
+
+npm install --save live2d-widget-model-shizuku</code></pre>
+<p>其他model参考：</p>
+<pre><code>https://github.com/xiazeyu/live2d-widget-models</code></pre>
+<h2 id="配置hexo的站点配置文件config.yml">配置Hexo的站点配置文件config.yml</h2>
+<figure class="highlight yml"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">### hexo-helper-live2d + live2d-widget-model-shizuku Live2D看板娘</span></span><br><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">pluginModelPath:</span> <span class="string">assets/</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="comment">#模板目录，在node_modules里</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget-model-shizuku</span>  </span><br><span class="line">  <span class="attr">display:</span></span><br><span class="line">    <span class="attr">position:</span> <span class="string">left</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">250</span> </span><br><span class="line">    <span class="attr">height:</span> <span class="number">500</span></span><br><span class="line">  <span class="attr">mobile:</span></span><br><span class="line">    <span class="comment"># 在手机端显示</span></span><br><span class="line">    <span class="attr">show:</span> <span class="literal">false</span>   </span><br><span class="line">  <span class="attr">rect:</span></span><br><span class="line">    <span class="string">opacity:0.7</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/31/live-2d/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1570,7 +1575,7 @@ $ npm install  #读取package.json信息，自动安装依赖 </code></pre>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">28k</span>
+    <span title="站点总字数">27k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
